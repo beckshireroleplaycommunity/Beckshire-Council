@@ -98,23 +98,36 @@
       .hamburger{display:inline-block}
     }
     
-    /* small enhancements */
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-  </style>
-</head>
-<body>
-  <div class="weather-alert" role="alert" aria-live="assertive">
-    Severe weather warning in effect for Beckshire. Please avoid unnecessary travel and check local updates.
-  </div>
-
-<div class="office-status" 
+<div class="office-status"
      style="background:#333; color:#fff; text-align:center; padding:0.8rem; font-size:1rem; font-weight:700; font-family:Arial, sans-serif;">
-  Our offices are now closed. 
-  <a href="https://sites.google.com/view/beckshire-police-roblox/hidden/report" 
+  Our offices are now closed.
+  <a href="https://sites.google.com/view/beckshire-police-roblox/hidden/report"
      style="color:#fff; text-decoration:underline; margin-left:0.2rem;">
      Click here to report an out of hours emergency
-  </a>
+  </a>.
 </div>
+
+<script>
+  const officeBanner = document.querySelector('.office-status');
+
+  function updateBannerVisibility() {
+    const now = new Date();
+    const hour = now.getHours();
+
+    // Show after 7 PM (19:00) until 10 AM (10:00)
+    if (hour >= 19 || hour < 10) {
+      officeBanner.style.display = 'block';
+    } else {
+      officeBanner.style.display = 'none';
+    }
+  }
+
+  // Run when page loads
+  updateBannerVisibility();
+
+  // Recheck every 5 minutes
+  setInterval(updateBannerVisibility, 300000);
+</script>
   
   </style>
 </head>
