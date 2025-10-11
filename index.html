@@ -98,6 +98,13 @@
       .hamburger{display:inline-block}
     }
     
+<!-- Weather alert -->
+<div class="weather-alert" role="alert" aria-live="assertive"
+     style="background:#a00; color:#fff; text-align:center; padding:0.8rem; font-size:1rem; font-weight:700; font-family:Arial, sans-serif;">
+  Severe weather warning in effect for Beckshire. Please avoid unnecessary travel and check local updates.
+</div>
+
+<!-- Office closed banner -->
 <div class="office-status"
      style="background:#333; color:#fff; text-align:center; padding:0.8rem; font-size:1rem; font-weight:700; font-family:Arial, sans-serif;">
   Our offices are now closed.
@@ -107,14 +114,16 @@
   </a>.
 </div>
 
+<!-- Script -->
 <script>
+document.addEventListener("DOMContentLoaded", function() {
   const officeBanner = document.querySelector('.office-status');
 
   function updateBannerVisibility() {
     const now = new Date();
     const hour = now.getHours();
 
-    // Show after 7 PM (19:00) until 10 AM (10:00)
+    // Show after 7 PM until 10 AM
     if (hour >= 19 || hour < 10) {
       officeBanner.style.display = 'block';
     } else {
@@ -122,11 +131,10 @@
     }
   }
 
-  // Run when page loads
+  // Run once and then every 5 minutes
   updateBannerVisibility();
-
-  // Recheck every 5 minutes
   setInterval(updateBannerVisibility, 300000);
+});
 </script>
   
   </style>
