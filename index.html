@@ -4,29 +4,93 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Royal Military Police — Practice Inspection Dates</title>
-  <meta name="description" content="Practice inspection dates and info for the Royal Military Police." />
+  <meta name="description" content="Shared Royal Military Police practice inspection dates." />
   <style>
-    :root{--accent:#003366;--muted:#6b7280;--bg:#f7fafc}
-    body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:var(--bg); color:#0f172a}
-    header{background:white;box-shadow:0 2px 6px rgba(16,24,40,.06);padding:20px 24px;display:flex;gap:16px;align-items:center}
-    .crest{width:64px;height:64px;background:#e6eef8;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent)}
-    .brand h1{margin:0;font-size:18px}
-    .brand p{margin:2px 0 0;color:var(--muted);font-size:13px}
-    main{max-width:980px;margin:28px auto;padding:16px}
-    .card{background:white;border-radius:12px;padding:18px;box-shadow:0 6px 18px rgba(15,23,42,.05);}
-    .controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:12px}
-    input[type=date],input[type=text],select{padding:8px 10px;border:1px solid #e6eef5;border-radius:8px}
-    button{background:var(--accent);color:white;border:none;padding:9px 12px;border-radius:8px;cursor:pointer}
-    table{width:100%;border-collapse:collapse;margin-top:12px}
-    th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #eef2f7;font-size:14px}
-    th{background:#fbfdff;font-weight:600}
-    .muted{color:var(--muted);font-size:13px}
-    .badge{display:inline-block;padding:6px 8px;border-radius:999px;background:#eef6ff;color:var(--accent);font-weight:600}
-    .next{background:#fef3c7;color:#92400e}
-    .past{color:#9ca3af}
-    .actions button{background:transparent;color:var(--accent);padding:6px;border-radius:8px;border:1px solid transparent}
-    footer{max-width:980px;margin:20px auto;color:var(--muted);font-size:13px;text-align:center}
-    @media (max-width:640px){header{padding:12px} .crest{width:48px;height:48px} th,td{padding:8px}}
+    :root {
+      --accent: #003366;
+      --muted: #6b7280;
+      --bg: #f8fafc;
+    }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      margin: 0;
+      background: var(--bg);
+      color: #0f172a;
+    }
+    header {
+      background: white;
+      box-shadow: 0 2px 6px rgba(16, 24, 40, .06);
+      padding: 20px 24px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .crest {
+      width: 64px;
+      height: 64px;
+      background: #e6eef8;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .brand h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+    .brand p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    main {
+      max-width: 980px;
+      margin: 28px auto;
+      padding: 16px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, .05);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+    th, td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid #eef2f7;
+      font-size: 14px;
+    }
+    th {
+      background: #f1f5f9;
+      font-weight: 600;
+    }
+    .muted {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .next {
+      background: #fef3c7;
+      color: #92400e;
+      padding: 4px 8px;
+      border-radius: 8px;
+    }
+    .past {
+      color: #9ca3af;
+    }
+    footer {
+      max-width: 980px;
+      margin: 20px auto;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -34,133 +98,80 @@
     <div class="crest">RMP</div>
     <div class="brand">
       <h1>Royal Military Police</h1>
-      <p>Practice inspection dates — unit overview</p>
+      <p>Practice Inspection Dates</p>
     </div>
   </header>
 
   <main>
     <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-        <div>
-          <h2 style="margin:0 0 6px 0">Practice Inspection Dates</h2>
-          <div class="muted">Quick view of upcoming and past practice inspections. Add dates below; they persist in your browser.</div>
-        </div>
-        <div class="badge">Unit: 1 RMP</div>
-      </div>
-
-      <div class="controls" style="margin-top:14px">
-        <label style="display:flex;gap:8px;align-items:center"><span class="muted">Date</span><input id="newDate" type="date"></label>
-        <label style="display:flex;gap:8px;align-items:center"><span class="muted">Location</span><input id="newLocation" type="text" placeholder="e.g. Drill Hall"></label>
-        <label style="display:flex;gap:8px;align-items:center"><span class="muted">Notes</span><input id="newNotes" type="text" placeholder="e.g. Inspection practice"></label>
-        <button id="addBtn">Add date</button>
-        <button id="exportBtn" style="background:#0b5;">Export CSV</button>
-        <button id="clearBtn" style="background:#e11;">Clear all</button>
-      </div>
-
-      <div style="overflow:auto">
-        <table id="datesTable" aria-live="polite">
-          <thead>
-            <tr><th>Date</th><th>Day</th><th>Location</th><th>Notes</th><th>Status</th><th>Actions</th></tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-
-      <div class="muted" style="margin-top:10px">Tip: click a date's "Delete" to remove it. Dates are saved to this browser's local storage; to share between users add this file to a GitHub repo and use GitHub Pages.</div>
+      <h2 style="margin-top:0;">Inspection Schedule</h2>
+      <p class="muted">This page shows the current practice inspection dates loaded from the official RMP Google Sheet. It updates automatically when the sheet is edited.</p>
+      <table id="datesTable">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Day</th>
+            <th>Location</th>
+            <th>Notes</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="5" class="muted">Loading data…</td></tr>
+        </tbody>
+      </table>
     </div>
   </main>
 
   <footer>
-    © Royal Military Police — Practice inspection planner • Built for simple unit use
+    © Royal Military Police — Shared Practice Inspection Schedule
   </footer>
 
   <script>
-    // Sample initial dates (ISO format)
-    const SAMPLE = [
-      {date: '2025-11-05', location: 'Central Drill Hall', notes: 'Full kit practice'},
-      {date: '2025-12-03', location: 'Training Ground', notes: 'Vehicle inspection drill'},
-      {date: '2026-01-07', location: 'Base Parade Square', notes: 'Formation & inspection'}
-    ];
+    const SHEET_CSV_URL =
+      "https://docs.google.com/spreadsheets/d/1qUkyTtkncFh9Jd7Tlwc59bmI0dl0GjcU8Y70E6YDT7s/export?format=csv";
 
-    const STORAGE_KEY = 'rmp_practice_dates_v1';
-    const tableBody = document.querySelector('#datesTable tbody');
-    const newDate = document.getElementById('newDate');
-    const newLocation = document.getElementById('newLocation');
-    const newNotes = document.getElementById('newNotes');
-    const addBtn = document.getElementById('addBtn');
-    const exportBtn = document.getElementById('exportBtn');
-    const clearBtn = document.getElementById('clearBtn');
+    async function loadSheetData() {
+      try {
+        const response = await fetch(SHEET_CSV_URL);
+        const csvText = await response.text();
+        const rows = csvText
+          .trim()
+          .split(/\\r?\\n/)
+          .map(line => line.split(","));
+        const tableBody = document.querySelector("#datesTable tbody");
+        tableBody.innerHTML = "";
 
-    function load() {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) { localStorage.setItem(STORAGE_KEY, JSON.stringify(SAMPLE)); return SAMPLE.slice(); }
-      try { return JSON.parse(raw); } catch(e){ return SAMPLE.slice(); }
+        const today = new Date();
+        const headers = rows.shift(); // remove header row
+        rows.forEach(row => {
+          const [date, location, notes] = row.map(c => c.replace(/^\"|\"$/g, ""));
+          const tr = document.createElement("tr");
+          const d = new Date(date);
+          if (isNaN(d)) return; // skip invalid
+          const dayName = d.toLocaleDateString(undefined, { weekday: "long" });
+          const isPast = d < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+          const status = isPast
+            ? '<span class="past">Past</span>'
+            : '<span class="next">Upcoming</span>';
+
+          tr.innerHTML = `
+            <td>${d.toLocaleDateString()}</td>
+            <td>${dayName}</td>
+            <td>${location || "-"}</td>
+            <td>${notes || "-"}</td>
+            <td>${status}</td>
+          `;
+          tableBody.appendChild(tr);
+        });
+      } catch (err) {
+        console.error(err);
+        document.querySelector("#datesTable tbody").innerHTML =
+          '<tr><td colspan="5" class="muted">Failed to load data. Check your sharing settings or try again.</td></tr>';
+      }
     }
 
-    function save(list){ localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); }
-
-    function render(){
-      const list = load();
-      // sort ascending by date
-      list.sort((a,b)=> new Date(a.date) - new Date(b.date));
-      tableBody.innerHTML = '';
-      const today = new Date();
-      let nextFound = false;
-      list.forEach((item, idx)=>{
-        const d = new Date(item.date + 'T00:00:00');
-        const tr = document.createElement('tr');
-        const dateCell = document.createElement('td');
-        dateCell.textContent = d.toLocaleDateString(undefined, {year:'numeric',month:'short',day:'numeric'});
-        const dayCell = document.createElement('td');
-        dayCell.textContent = d.toLocaleDateString(undefined,{weekday:'long'});
-        const locCell = document.createElement('td'); locCell.textContent = item.location || '-';
-        const notesCell = document.createElement('td'); notesCell.textContent = item.notes || '-';
-        const statusCell = document.createElement('td');
-        if (d.setHours(0,0,0,0) < new Date(today.getFullYear(),today.getMonth(),today.getDate()).getTime()){
-          statusCell.innerHTML = '<span class="muted">Past</span>';
-          tr.classList.add('past');
-        } else if (!nextFound){
-          statusCell.innerHTML = '<span class="next">Next</span>';
-          tr.style.background = '#fff8e6';
-          nextFound = true;
-        } else {
-          statusCell.innerHTML = '<span class="muted">Upcoming</span>';
-        }
-        const actionsCell = document.createElement('td'); actionsCell.className='actions';
-        const delBtn = document.createElement('button'); delBtn.textContent='Delete';
-        delBtn.addEventListener('click', ()=>{ if(confirm('Delete this date?')){ list.splice(idx,1); save(list); render(); }});
-        actionsCell.appendChild(delBtn);
-
-        tr.appendChild(dateCell); tr.appendChild(dayCell); tr.appendChild(locCell); tr.appendChild(notesCell); tr.appendChild(statusCell); tr.appendChild(actionsCell);
-        tableBody.appendChild(tr);
-      });
-    }
-
-    addBtn.addEventListener('click', ()=>{
-      const dateVal = newDate.value;
-      if(!dateVal){ alert('Please choose a date.'); return; }
-      const list = load();
-      list.push({date:dateVal, location:newLocation.value.trim(), notes:newNotes.value.trim()});
-      save(list); render();
-      newDate.value=''; newLocation.value=''; newNotes.value='';
-    });
-
-    exportBtn.addEventListener('click', ()=>{
-      const list = load();
-      if(!list.length){ alert('No dates to export.'); return; }
-      let csv = 'date,location,notes\n';
-      list.forEach(row=>{ csv += `${row.date.replace(/,/g,'')} , "${(row.location||'').replace(/"/g,'""')}" , "${(row.notes||'').replace(/"/g,'""')}"\n`; });
-      const blob = new Blob([csv],{type:'text/csv'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a'); a.href = url; a.download = 'rmp_practice_dates.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-    });
-
-    clearBtn.addEventListener('click', ()=>{
-      if(confirm('Clear all saved dates? This cannot be undone.')){ localStorage.removeItem(STORAGE_KEY); render(); }
-    });
-
-    // render on load
-    document.addEventListener('DOMContentLoaded', render);
+    loadSheetData();
   </script>
 </body>
 </html>
