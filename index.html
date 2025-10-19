@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Royal Military Police — Practice Inspection Dates</title>
-  <meta name="description" content="Shared Royal Military Police practice inspection dates." />
+  <title>Royal Military Police — Inspection Schedule</title>
+  <meta name="description" content="Inspection schedule for the Royal Military Police." />
   <style>
     :root {
-      --accent: #003366;
-      --muted: #6b7280;
+      --accent: #990000;
       --bg: #f8fafc;
+      --muted: #6b7280;
     }
     body {
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
@@ -28,17 +28,18 @@
     .crest {
       width: 64px;
       height: 64px;
-      background: #e6eef8;
+      background: #f4e1e1;
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
       color: var(--accent);
+      font-size: 18px;
     }
     .brand h1 {
       margin: 0;
-      font-size: 20px;
+      font-size: 22px;
     }
     .brand p {
       margin: 2px 0 0;
@@ -68,21 +69,12 @@
       font-size: 14px;
     }
     th {
-      background: #f1f5f9;
+      background: #f3f4f6;
       font-weight: 600;
     }
     .muted {
       color: var(--muted);
       font-size: 13px;
-    }
-    .next {
-      background: #fef3c7;
-      color: #92400e;
-      padding: 4px 8px;
-      border-radius: 8px;
-    }
-    .past {
-      color: #9ca3af;
     }
     footer {
       max-width: 980px;
@@ -98,80 +90,41 @@
     <div class="crest">RMP</div>
     <div class="brand">
       <h1>Royal Military Police</h1>
-      <p>Practice Inspection Dates</p>
+      <p>Inspection Schedule</p>
     </div>
   </header>
 
   <main>
     <div class="card">
-      <h2 style="margin-top:0;">Inspection Schedule</h2>
-      <p class="muted">This page shows the current practice inspection dates loaded from the official RMP Google Sheet. It updates automatically when the sheet is edited.</p>
-      <table id="datesTable">
+      <h2 style="margin-top:0;">Upcoming Inspections</h2>
+      <p class="muted">This section lists all scheduled inspections. Add new ones directly in the HTML code below.</p>
+      <table>
         <thead>
           <tr>
             <th>Date</th>
             <th>Day</th>
             <th>Location</th>
             <th>Notes</th>
-            <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td colspan="5" class="muted">Loading data…</td></tr>
+          <!-- 👇 ADD YOUR INSPECTIONS BELOW THIS LINE 👇 -->
+          <!-- Example:
+          <tr>
+            <td>2025-11-05</td>
+            <td>Wednesday</td>
+            <td>Central Drill Hall</td>
+            <td>Full kit practice</td>
+          </tr>
+          -->
+          <!-- 👆 ADD YOUR INSPECTIONS ABOVE THIS LINE 👆 -->
         </tbody>
       </table>
     </div>
   </main>
 
   <footer>
-    © Royal Military Police — Shared Practice Inspection Schedule
+    © Royal Military Police — Inspection Schedule
   </footer>
-
-  <script>
-    const SHEET_CSV_URL =
-      "https://docs.google.com/spreadsheets/d/1qUkyTtkncFh9Jd7Tlwc59bmI0dl0GjcU8Y70E6YDT7s/export?format=csv";
-
-    async function loadSheetData() {
-      try {
-        const response = await fetch(SHEET_CSV_URL);
-        const csvText = await response.text();
-        const rows = csvText
-          .trim()
-          .split(/\\r?\\n/)
-          .map(line => line.split(","));
-        const tableBody = document.querySelector("#datesTable tbody");
-        tableBody.innerHTML = "";
-
-        const today = new Date();
-        const headers = rows.shift(); // remove header row
-        rows.forEach(row => {
-          const [date, location, notes] = row.map(c => c.replace(/^\"|\"$/g, ""));
-          const tr = document.createElement("tr");
-          const d = new Date(date);
-          if (isNaN(d)) return; // skip invalid
-          const dayName = d.toLocaleDateString(undefined, { weekday: "long" });
-          const isPast = d < new Date(today.getFullYear(), today.getMonth(), today.getDate());
-          const status = isPast
-            ? '<span class="past">Past</span>'
-            : '<span class="next">Upcoming</span>';
-
-          tr.innerHTML = `
-            <td>${d.toLocaleDateString()}</td>
-            <td>${dayName}</td>
-            <td>${location || "-"}</td>
-            <td>${notes || "-"}</td>
-            <td>${status}</td>
-          `;
-          tableBody.appendChild(tr);
-        });
-      } catch (err) {
-        console.error(err);
-        document.querySelector("#datesTable tbody").innerHTML =
-          '<tr><td colspan="5" class="muted">Failed to load data. Check your sharing settings or try again.</td></tr>';
-      }
-    }
-
-    loadSheetData();
-  </script>
 </body>
 </html>
