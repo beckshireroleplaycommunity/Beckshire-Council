@@ -1,701 +1,130 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>RMP Logbook — Royal Military Police</title>
-<style>
-  /* Military style: dark red, near-black, gold accent */
-  :root{
-    --bg:#0f0f10;
-    --panel:#121213;
-    --muted:#9aa0a6;
-    --accent:#7c0b0b; /* dark red */
-    --accent-2:#b68b2b; /* gold */
-    --card:#171718;
-    --glass: rgba(255,255,255,0.03);
-    --success:#1f8a3f;
-    --danger:#c0392b;
-    --radius:8px;
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  }
-  html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#060606);color:#e8e8e8}
-  .container{max-width:1100px;margin:28px auto;padding:22px;}
-  header{display:flex;align-items:center;gap:18px;margin-bottom:18px}
-  .crest{
-    width:72px;height:72px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#3a0b0b);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,0.6);
-    border:3px solid rgba(182,139,43,0.12)
-  }
-  .crest svg{width:44px;height:44px;fill:var(--accent-2)}
-  h1{font-size:20px;margin:0}
-  .sub{color:var(--muted);font-size:13px;margin-top:4px}
-  nav{margin-left:auto;display:flex;gap:8px;align-items:center}
-  .btn{
-    background:var(--panel);border:1px solid rgba(255,255,255,0.03);padding:8px 12px;border-radius:8px;color:inherit;font-weight:600;cursor:pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-  }
-  .btn:hover{transform:translateY(-1px)}
-  .btn.primary{background:linear-gradient(180deg,var(--accent),#5e0b0b);border:1px solid rgba(0,0,0,0.5);color:var(--accent-2)}
-  .btn.gold{background:transparent;border:1px solid rgba(182,139,43,0.15);color:var(--accent-2)}
-  .layout{display:grid;grid-template-columns:320px 1fr;gap:16px}
-  aside.panel{background:var(--card);padding:14px;border-radius:var(--radius);min-height:400px}
-  section.main{background:var(--card);padding:18px;border-radius:var(--radius);min-height:400px}
-  .search input{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:var(--glass);color:inherit}
-  .section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-  .list{margin-top:8px;display:flex;flex-direction:column;gap:8px}
-  .item{
-    background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
-    padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.02);display:flex;justify-content:space-between;gap:12px;align-items:flex-start;
-  }
-  .item .meta{color:var(--muted);font-size:12px}
-  .item .title{font-weight:700}
-  .small{font-size:13px;color:var(--muted)}
-  .tag{padding:4px 8px;border-radius:999px;font-weight:700;font-size:12px;background:rgba(182,139,43,0.07);color:var(--accent-2);border:1px solid rgba(182,139,43,0.08)}
-  .controls{display:flex;gap:8px}
-  .form{background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.02);margin-bottom:10px}
-  input[type="text"], textarea, input[type="date"], input[type="time"], select{
-    width:100%;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;
-  }
-  textarea{min-height:84px;resize:vertical}
-  .row{display:flex;gap:8px}
-  .col{flex:1}
-  .muted{color:var(--muted);font-size:13px}
-  footer{margin-top:14px;color:var(--muted);font-size:12px;text-align:center}
-  .badge-pass{background:rgba(31,138,63,0.12);color:var(--success);padding:6px 10px;border-radius:999px;border:1px solid rgba(31,138,63,0.08);font-weight:700}
-  .badge-fail{background:rgba(192,57,43,0.08);color:var(--danger);padding:6px 10px;border-radius:999px;border:1px solid rgba(192,57,43,0.08);font-weight:700}
-  .actions button{background:transparent;border:none;color:var(--muted);cursor:pointer;padding:6px;border-radius:6px}
-  .actions button:hover{color:var(--accent-2)}
-  .empty{padding:20px;text-align:center;color:var(--muted);border-radius:8px;border:1px dashed rgba(255,255,255,0.03)}
-  .top-row{display:flex;gap:8px;align-items:center}
-  @media (max-width:880px){ .layout{grid-template-columns:1fr; } aside.panel{order:2} section.main{order:1} header{flex-direction:column;align-items:flex-start} nav{margin-left:0} .crest{width:56px;height:56px} }
-  /* print styles */
-  @media print {
-    body{background:white;color:black} .container{max-width:100%;padding:6mm} nav, .btn, .actions, .search, footer{display:none} .item{border:1px solid #ccc;page-break-inside:avoid}
-  }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Royal Military Police — Inspection Schedule</title>
+  <meta name="description" content="Inspection schedule for the Royal Military Police." />
+  <style>
+    :root {
+      --accent: #990000;
+      --bg: #f8fafc;
+      --muted: #6b7280;
+    }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      margin: 0;
+      background: var(--bg);
+      color: #0f172a;
+    }
+    header {
+      background: white;
+      box-shadow: 0 2px 6px rgba(16, 24, 40, .06);
+      padding: 20px 24px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .crest {
+      width: 64px;
+      height: 64px;
+      background: #f4e1e1;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 18px;
+    }
+    .brand h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+    .brand p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    main {
+      max-width: 980px;
+      margin: 28px auto;
+      padding: 16px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, .05);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+    th, td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid #eef2f7;
+      font-size: 14px;
+    }
+    th {
+      background: #f3f4f6;
+      font-weight: 600;
+    }
+    .muted {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    footer {
+      max-width: 980px;
+      margin: 20px auto;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-  <div class="container" role="application" aria-label="RMP Logbook">
-    <header>
-      <div class="crest" aria-hidden="true">
-        <!-- simple crest -->
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.5 5L20 8l-4 3 1 6-5-3-5 3 1-6L4 8l5.5-.5L12 2z"/></svg>
-      </div>
-      <div>
-        <h1>Royal Military Police — Logbook</h1>
-        <div class="sub">Individual notes, events & inspections — saved locally</div>
-      </div>
-
-      <nav aria-label="Main">
-        <div class="top-row" style="gap:6px">
-          <button id="nav-notes" class="btn primary" title="Notes (logbook)">Notes</button>
-          <button id="nav-events" class="btn" title="Events">Events</button>
-          <button id="nav-inspections" class="btn" title="Inspections">Inspections</button>
-        </div>
-        <div style="width:12px"></div>
-        <button id="exportBtn" class="btn gold" title="Export JSON">Export</button>
-        <label class="btn" title="Import JSON" for="importFile" style="cursor:pointer">Import<input id="importFile" type="file" accept="application/json" style="display:none"></label>
-        <button id="printBtn" class="btn" title="Print current view">Print</button>
-      </nav>
-    </header>
-
-    <div class="layout" role="region" aria-live="polite">
-      <aside class="panel" aria-label="Sidebar">
-        <div class="section-title">
-          <strong>Summary</strong>
-          <span class="muted" id="summary-date"></span>
-        </div>
-
-        <div class="search">
-          <input id="globalSearch" placeholder="Search notes, events, inspections..." aria-label="Search" />
-        </div>
-
-        <div style="margin-top:12px">
-          <div class="small">Notes</div>
-          <div id="summary-notes" class="muted" style="margin-top:6px">—</div>
-        </div>
-
-        <div style="margin-top:10px">
-          <div class="small">Upcoming events</div>
-          <div id="summary-events" style="margin-top:6px" class="list small muted">—</div>
-        </div>
-
-        <div style="margin-top:10px">
-          <div class="small">Recent inspections</div>
-          <div id="summary-inspections" style="margin-top:6px" class="list small muted">—</div>
-        </div>
-
-        <div style="margin-top:14px">
-          <div class="small">Quick actions</div>
-          <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
-            <button id="quickNote" class="btn">New Note</button>
-            <button id="quickEvent" class="btn">New Event</button>
-            <button id="quickInspection" class="btn">New Inspection</button>
-          </div>
-        </div>
-
-        <footer>
-          <div style="margin-top:10px">RMP Logbook • Local-only • Last saved: <span id="lastSaved">—</span></div>
-        </footer>
-      </aside>
-
-      <section class="main" id="main" aria-live="polite">
-        <!-- dynamic content injected here -->
-      </section>
+  <header>
+    <div class="crest">RMP</div>
+    <div class="brand">
+      <h1>Royal Military Police</h1>
+      <p>Inspection Schedule</p>
     </div>
-  </div>
+  </header>
 
-<script>
-/* RMP Logbook - single file JS
-   Features:
-   - Notes, Events, Inspections (CRUD)
-   - localStorage persistence
-   - search, filters, export/import JSON
-   - military style UI
-*/
-
-const STORAGE_KEY = 'rmp_logbook_v1';
-
-/* Data model
-{
-  notes: [{id, title, body, ts}],
-  events: [{id, title, date, time, location, notes, created}],
-  inspections: [{id, type, date, result, notes, created}]
-}
-*/
-
-function now(){ return new Date().toISOString(); }
-function id(prefix='i'){ return prefix + Math.random().toString(36).slice(2,9); }
-
-function loadData(){
-  try{
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if(!raw) return {notes:[], events:[], inspections:[], meta:{created: now()}};
-    return JSON.parse(raw);
-  }catch(e){
-    console.error('load error', e);
-    return {notes:[], events:[], inspections:[], meta:{created: now()}};
-  }
-}
-function saveData(state){
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  document.getElementById('lastSaved').textContent = (new Date()).toLocaleString();
-}
-
-// UI helpers
-const main = document.getElementById('main');
-const summaryNotes = document.getElementById('summary-notes');
-const summaryEvents = document.getElementById('summary-events');
-const summaryInspections = document.getElementById('summary-inspections');
-const summaryDate = document.getElementById('summary-date');
-
-let state = loadData();
-saveData(state); // ensure lastSaved updated
-
-summaryDate.textContent = new Date().toLocaleDateString();
-
-// Navigation
-document.getElementById('nav-notes').addEventListener('click', ()=> showView('notes'));
-document.getElementById('nav-events').addEventListener('click', ()=> showView('events'));
-document.getElementById('nav-inspections').addEventListener('click', ()=> showView('inspections'));
-
-document.getElementById('quickNote').addEventListener('click', ()=> { showView('notes'); focusNew('note'); });
-document.getElementById('quickEvent').addEventListener('click', ()=> { showView('events'); focusNew('event'); });
-document.getElementById('quickInspection').addEventListener('click', ()=> { showView('inspections'); focusNew('inspection'); });
-
-document.getElementById('exportBtn').addEventListener('click', ()=> {
-  const data = JSON.stringify(state, null, 2);
-  const blob = new Blob([data], {type:'application/json'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href=url; a.download = 'rmp-logbook.json'; a.click(); URL.revokeObjectURL(url);
-});
-document.getElementById('importFile').addEventListener('change', (e)=>{
-  const f = e.target.files[0];
-  if(!f) return;
-  const r = new FileReader();
-  r.onload = ()=> {
-    try{
-      const parsed = JSON.parse(r.result);
-      // basic validation
-      parsed.notes = parsed.notes||[]; parsed.events = parsed.events||[]; parsed.inspections = parsed.inspections||[]; parsed.meta = parsed.meta||{imported: now()};
-      state = parsed; saveData(state); renderSummary(); showToast('Imported data');
-      showView('dashboard');
-    }catch(err){ alert('Invalid JSON file'); }
-  };
-  r.readAsText(f);
-});
-
-document.getElementById('printBtn').addEventListener('click', ()=> window.print());
-
-// search
-document.getElementById('globalSearch').addEventListener('input', (e)=> {
-  const q = e.target.value.trim().toLowerCase();
-  if(!q) { // restore current view
-    const active = document.querySelector('button.btn.primary')?.id || 'nav-notes';
-    if(active === 'nav-notes') showView('notes');
-    else if(active === 'nav-events') showView('events');
-    else if(active === 'nav-inspections') showView('inspections');
-    return;
-  }
-  // search across all
-  const results = [];
-  state.notes.forEach(n=> { if((n.title + ' ' + n.body).toLowerCase().includes(q)) results.push({type:'Note', item:n}); });
-  state.events.forEach(ev=> { if((ev.title + ' ' + (ev.notes||'') + ' ' + (ev.location||'')).toLowerCase().includes(q)) results.push({type:'Event', item:ev}); });
-  state.inspections.forEach(ins=> { if((ins.type + ' ' + (ins.notes||'')).toLowerCase().includes(q)) results.push({type:'Inspection', item:ins}); });
-
-  main.innerHTML = `
-    <div class="section-title"><strong>Search results</strong><span class="muted">${results.length} matches</span></div>
-    <div class="list">
-      ${results.length ? results.map(r=> renderSearchCard(r)).join('') : '<div class="empty">No matches</div>'}
+  <main>
+    <div class="card">
+      <h2 style="margin-top:0;">Upcoming Inspections</h2>
+      <p class="muted">This section lists all scheduled inspections. Add new ones directly in the HTML code below.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Day</th>
+            <th>Location</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 👇 ADD YOUR INSPECTIONS BELOW THIS LINE 👇 -->
+          <!-- Example:
+          <tr>
+            <td>2025-11-05</td>
+            <td>Wednesday</td>
+            <td>Central Drill Hall</td>
+            <td>Full kit practice</td>
+          </tr>
+          -->
+          <!-- 👆 ADD YOUR INSPECTIONS ABOVE THIS LINE 👆 -->
+        </tbody>
+      </table>
     </div>
-  `;
-});
+  </main>
 
-// helpers to render small cards
-function renderSearchCard(r){
-  const i = r.item;
-  if(r.type === 'Note') return `
-    <div class="item"><div>
-      <div class="title">${escapeHtml(i.title||'(no title)')}</div>
-      <div class="meta">${new Date(i.ts).toLocaleString()}</div>
-      <div class="small" style="margin-top:6px">${escapeHtml(i.body||'')}</div>
-    </div><div class="controls">
-      <button class="btn" onclick="editNote('${i.id}')">Edit</button>
-    </div></div>
-  `;
-  if(r.type === 'Event') return `
-    <div class="item"><div>
-      <div class="title">${escapeHtml(i.title||'(no title)')}</div>
-      <div class="meta">${i.date || 'No date'} ${i.time || ''} • ${escapeHtml(i.location||'')}</div>
-      <div class="small" style="margin-top:6px">${escapeHtml(i.notes||'')}</div>
-    </div><div class="controls">
-      <button class="btn" onclick="editEvent('${i.id}')">Edit</button>
-    </div></div>
-  `;
-  if(r.type === 'Inspection') return `
-    <div class="item"><div>
-      <div class="title">${escapeHtml(i.type||'(no type)')}</div>
-      <div class="meta">${i.date || 'No date'} • Result: ${escapeHtml(i.result||'')}</div>
-      <div class="small" style="margin-top:6px">${escapeHtml(i.notes||'')}</div>
-    </div><div class="controls">
-      <button class="btn" onclick="editInspection('${i.id}')">Edit</button>
-    </div></div>
-  `;
-  return '';
-}
-
-// safe escaping
-function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',\"'\":'&#39;'}[ch])); }
-
-// render summary in sidebar
-function renderSummary(){
-  summaryNotes.textContent = state.notes.length + ' entries';
-  // events soonest 3
-  const upcoming = state.events.slice().filter(e=> e.date).sort((a,b)=> a.date.localeCompare(b.date)).slice(0,5);
-  if(upcoming.length) summaryEvents.innerHTML = upcoming.map(e => `<div>${escapeHtml(e.date)} — ${escapeHtml(e.title)}</div>`).join('');
-  else summaryEvents.innerHTML = '<div class="muted">No upcoming events</div>';
-  const recentIns = state.inspections.slice().sort((a,b)=> (b.created||'').localeCompare(a.created||'')).slice(0,4);
-  if(recentIns.length) summaryInspections.innerHTML = recentIns.map(i => `<div>${escapeHtml(i.date||i.created)} — ${escapeHtml(i.type)} — <span class="${i.result==='Pass' ? 'badge-pass' : i.result==='Fail' ? 'badge-fail' : ''}">${escapeHtml(i.result||'')}</span></div>`).join('');
-  else summaryInspections.innerHTML = '<div class="muted">No inspections yet</div>';
-}
-renderSummary();
-
-// ---------------- VIEWS ----------------
-
-function showView(v){
-  // update nav highlight
-  document.querySelectorAll('nav button').forEach(b=> b.classList.remove('primary'));
-  if(v==='notes') document.getElementById('nav-notes').classList.add('primary');
-  if(v==='events') document.getElementById('nav-events').classList.add('primary');
-  if(v==='inspections') document.getElementById('nav-inspections').classList.add('primary');
-
-  if(v==='dashboard') renderDashboard();
-  if(v==='notes') renderNotes();
-  if(v==='events') renderEvents();
-  if(v==='inspections') renderInspections();
-}
-showView('dashboard');
-
-function renderDashboard(){
-  const recentNotes = state.notes.slice().sort((a,b)=> (b.ts||'').localeCompare(a.ts||'')).slice(0,6);
-  const upcomingEvents = state.events.slice().filter(e=> e.date).sort((a,b)=> a.date.localeCompare(b.date)).slice(0,6);
-  const recentIns = state.inspections.slice().sort((a,b)=> (b.created||'').localeCompare(a.created||'')).slice(0,6);
-
-  main.innerHTML = `
-    <div class="section-title"><strong>Dashboard</strong><span class="muted">Overview</span></div>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:12px">
-      <div class="form"><div class="small">Notes</div><div style="font-weight:700;font-size:18px">${state.notes.length}</div></div>
-      <div class="form"><div class="small">Events</div><div style="font-weight:700;font-size:18px">${state.events.length}</div></div>
-      <div class="form"><div class="small">Inspections</div><div style="font-weight:700;font-size:18px">${state.inspections.length}</div></div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-      <div class="panel" style="background:transparent;padding:0">
-        <div class="section-title"><strong>Recent notes</strong><span class="muted">${recentNotes.length}</span></div>
-        <div class="list">
-          ${recentNotes.length ? recentNotes.map(n => `
-            <div class="item">
-              <div>
-                <div class="title">${escapeHtml(n.title)}</div>
-                <div class="meta">${new Date(n.ts).toLocaleString()}</div>
-                <div class="small" style="margin-top:6px">${escapeHtml(n.body.slice(0,220))}${n.body.length>220?'…':''}</div>
-              </div>
-              <div class="controls">
-                <button class="btn" onclick="editNote('${n.id}')">Edit</button>
-                <button class="btn" onclick="deleteNote('${n.id}')">Del</button>
-              </div>
-            </div>
-          `).join('') : `<div class="empty">No notes</div>`}
-        </div>
-      </div>
-
-      <div class="panel" style="background:transparent;padding:0">
-        <div class="section-title"><strong>Upcoming events</strong><span class="muted">${upcomingEvents.length}</span></div>
-        <div class="list">
-          ${upcomingEvents.length ? upcomingEvents.map(e => `
-            <div class="item">
-              <div>
-                <div class="title">${escapeHtml(e.title)}</div>
-                <div class="meta">${escapeHtml(e.date)} ${escapeHtml(e.time||'')}</div>
-                <div class="small" style="margin-top:6px">${escapeHtml(e.location||'')}</div>
-              </div>
-              <div class="controls">
-                <button class="btn" onclick="editEvent('${e.id}')">Edit</button>
-                <button class="btn" onclick="deleteEvent('${e.id}')">Del</button>
-              </div>
-            </div>
-          `).join('') : `<div class="empty">No upcoming events</div>`}
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top:12px" class="panel">
-      <div class="section-title"><strong>Recent inspections</strong><span class="muted">${recentIns.length}</span></div>
-      <div class="list">
-        ${recentIns.length ? recentIns.map(i => `
-          <div class="item">
-            <div>
-              <div class="title">${escapeHtml(i.type)}</div>
-              <div class="meta">${escapeHtml(i.date||i.created)} • Result: ${escapeHtml(i.result||'')}</div>
-              <div class="small" style="margin-top:6px">${escapeHtml(i.notes||'')}</div>
-            </div>
-            <div class="controls">
-              <button class="btn" onclick="editInspection('${i.id}')">Edit</button>
-              <button class="btn" onclick="deleteInspection('${i.id}')">Del</button>
-            </div>
-          </div>
-        `).join('') : `<div class="empty">No inspections</div>`}
-      </div>
-    </div>
-  `;
-}
-
-// ------------- NOTES view -------------
-function renderNotes(){
-  const notes = state.notes.slice().sort((a,b)=> (b.ts||'').localeCompare(a.ts||''));
-  main.innerHTML = `
-    <div class="section-title"><strong>Daily Log — Notes</strong><span class="muted">Add personal entries</span></div>
-    <div class="form" id="noteFormContainer">
-      <div style="display:flex;gap:8px">
-        <input id="noteTitle" type="text" placeholder="Title (e.g. Patrol Report)" />
-        <button id="saveNoteBtn" class="btn primary">Save</button>
-      </div>
-      <div style="margin-top:8px">
-        <textarea id="noteBody" placeholder="Write the log entry..."></textarea>
-      </div>
-    </div>
-
-    <div class="list" id="notesList">
-      ${notes.length ? notes.map(n => `
-        <div class="item" id="note-${n.id}">
-          <div>
-            <div class="title">${escapeHtml(n.title)}</div>
-            <div class="meta">${new Date(n.ts).toLocaleString()}</div>
-            <div class="small" style="margin-top:6px">${escapeHtml(n.body)}</div>
-          </div>
-          <div class="controls actions">
-            <button onclick="editNote('${n.id}')">Edit</button>
-            <button onclick="deleteNote('${n.id}')">Delete</button>
-          </div>
-        </div>
-      `).join('') : `<div class="empty">No notes recorded. Use the form above to add one.</div>`}
-    </div>
-  `;
-
-  document.getElementById('saveNoteBtn').addEventListener('click', ()=>{
-    const title = document.getElementById('noteTitle').value.trim();
-    const body = document.getElementById('noteBody').value.trim();
-    if(!title && !body){ alert('Write something or add a title'); return; }
-    const n = { id: id('note_'), title, body, ts: now() };
-    state.notes.unshift(n); saveData(state); renderNotes(); renderSummary(); showToast('Note saved');
-  });
-}
-
-// NOTE actions accessible globally for inline onclick handlers
-window.editNote = function(noteId){
-  const note = state.notes.find(n=> n.id===noteId);
-  if(!note) return;
-  showView('notes');
-  setTimeout(()=>{
-    document.getElementById('noteTitle').value = note.title;
-    document.getElementById('noteBody').value = note.body;
-    // replace save behavior to update
-    const btn = document.getElementById('saveNoteBtn');
-    btn.textContent = 'Update';
-    const handler = ()=>{
-      note.title = document.getElementById('noteTitle').value.trim();
-      note.body = document.getElementById('noteBody').value.trim();
-      note.ts = now();
-      saveData(state); renderNotes(); renderSummary(); showToast('Note updated');
-      btn.textContent = 'Save';
-      btn.removeEventListener('click', handler);
-      btn.addEventListener('click', createNoteHandler);
-    };
-    // remove any existing click listeners by cloning and replacing
-    const newBtn = btn.cloneNode(true);
-    btn.parentNode.replaceChild(newBtn, btn);
-    function createNoteHandler(){ // default save behavior (added again)
-      const title = document.getElementById('noteTitle').value.trim();
-      const body = document.getElementById('noteBody').value.trim();
-      if(!title && !body){ alert('Write something or add a title'); return; }
-      const n = { id: id('note_'), title, body, ts: now() };
-      state.notes.unshift(n); saveData(state); renderNotes(); renderSummary(); showToast('Note saved');
-    }
-    newBtn.addEventListener('click', handler);
-  }, 50);
-};
-
-window.deleteNote = function(noteId){
-  if(!confirm('Delete this note?')) return;
-  state.notes = state.notes.filter(n=> n.id!==noteId);
-  saveData(state); renderNotes(); renderSummary(); showToast('Note deleted');
-};
-
-// ------------- EVENTS view -------------
-function renderEvents(){
-  const events = state.events.slice().sort((a,b)=> (a.date||'').localeCompare(b.date||''));
-  main.innerHTML = `
-    <div class="section-title"><strong>Events</strong><span class="muted">Duties, training & parades</span></div>
-    <div class="form">
-      <div class="row">
-        <div class="col"><input id="evTitle" placeholder="Event title (e.g. Parade)" type="text"></div>
-        <div style="width:140px"><input id="evDate" type="date"></div>
-        <div style="width:110px"><input id="evTime" type="time"></div>
-      </div>
-      <div style="margin-top:8px" class="row">
-        <div class="col"><input id="evLocation" placeholder="Location"></div>
-        <div style="width:140px">
-          <select id="evType">
-            <option value="">Type: Routine</option>
-            <option value="Duty">Duty</option>
-            <option value="Training">Training</option>
-            <option value="Inspection">Inspection</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-      </div>
-      <div style="margin-top:8px"><textarea id="evNotes" placeholder="Notes (optional)"></textarea></div>
-      <div style="margin-top:8px;display:flex;gap:8px">
-        <button id="saveEvent" class="btn primary">Save Event</button>
-        <button id="clearEvent" class="btn">Clear</button>
-      </div>
-    </div>
-
-    <div class="list" id="eventsList">
-      ${events.length ? events.map(e => `
-        <div class="item">
-          <div>
-            <div class="title">${escapeHtml(e.title)}</div>
-            <div class="meta">${escapeHtml(e.date)} ${escapeHtml(e.time||'')} • ${escapeHtml(e.location||'')}</div>
-            <div class="small" style="margin-top:6px">${escapeHtml(e.notes||'')}</div>
-          </div>
-          <div class="controls actions">
-            <button onclick="editEvent('${e.id}')">Edit</button>
-            <button onclick="deleteEvent('${e.id}')">Delete</button>
-          </div>
-        </div>
-      `).join('') : `<div class="empty">No events scheduled. Add one above.</div>`}
-    </div>
-  `;
-
-  document.getElementById('saveEvent').addEventListener('click', ()=>{
-    const title = document.getElementById('evTitle').value.trim();
-    if(!title){ alert('Enter a title'); return; }
-    const ev = {
-      id: id('ev_'),
-      title,
-      date: document.getElementById('evDate').value || '',
-      time: document.getElementById('evTime').value || '',
-      location: document.getElementById('evLocation').value || '',
-      type: document.getElementById('evType').value || '',
-      notes: document.getElementById('evNotes').value || '',
-      created: now()
-    };
-    state.events.push(ev);
-    saveData(state); renderEvents(); renderSummary(); showToast('Event saved');
-    clearEventForm();
-  });
-
-  document.getElementById('clearEvent').addEventListener('click', clearEventForm);
-}
-
-function clearEventForm(){
-  ['evTitle','evDate','evTime','evLocation','evType','evNotes'].forEach(id=> { const el=document.getElementById(id); if(el) el.value=''; });
-}
-
-window.editEvent = function(evId){
-  const ev = state.events.find(x=> x.id===evId);
-  if(!ev) return;
-  showView('events');
-  setTimeout(()=>{
-    document.getElementById('evTitle').value = ev.title || '';
-    document.getElementById('evDate').value = ev.date || '';
-    document.getElementById('evTime').value = ev.time || '';
-    document.getElementById('evLocation').value = ev.location || '';
-    document.getElementById('evType').value = ev.type || '';
-    document.getElementById('evNotes').value = ev.notes || '';
-    const saveBtn = document.getElementById('saveEvent');
-    const newBtn = saveBtn.cloneNode(true);
-    saveBtn.parentNode.replaceChild(newBtn, saveBtn);
-
-    newBtn.addEventListener('click', ()=>{
-      ev.title = document.getElementById('evTitle').value.trim();
-      ev.date = document.getElementById('evDate').value;
-      ev.time = document.getElementById('evTime').value;
-      ev.location = document.getElementById('evLocation').value;
-      ev.type = document.getElementById('evType').value;
-      ev.notes = document.getElementById('evNotes').value;
-      saveData(state); renderEvents(); renderSummary(); showToast('Event updated');
-    });
-  }, 60);
-};
-
-window.deleteEvent = function(evId){
-  if(!confirm('Delete this event?')) return;
-  state.events = state.events.filter(e=> e.id!==evId);
-  saveData(state); renderEvents(); renderSummary(); showToast('Event deleted');
-};
-
-// ------------- INSPECTIONS view -------------
-function renderInspections(){
-  const items = state.inspections.slice().sort((a,b)=> (b.created||'').localeCompare(a.created||''));
-  main.innerHTML = `
-    <div class="section-title"><strong>Inspections</strong><span class="muted">Record inspections and outcomes</span></div>
-    <div class="form">
-      <div class="row">
-        <div class="col"><input id="insType" placeholder="Inspection type (e.g. Barracks)" type="text"></div>
-        <div style="width:160px"><input id="insDate" type="date"></div>
-        <div style="width:160px">
-          <select id="insResult">
-            <option value="">Result</option>
-            <option value="Pass">Pass</option>
-            <option value="Fail">Fail</option>
-            <option value="Pending">Pending</option>
-          </select>
-        </div>
-      </div>
-      <div style="margin-top:8px">
-        <textarea id="insNotes" placeholder="Notes and actions"></textarea>
-      </div>
-      <div style="margin-top:8px;display:flex;gap:8px">
-        <button id="saveInspection" class="btn primary">Save Inspection</button>
-        <button id="clearInspection" class="btn">Clear</button>
-      </div>
-    </div>
-
-    <div class="list" id="insList">
-      ${items.length ? items.map(i => `
-        <div class="item">
-          <div>
-            <div class="title">${escapeHtml(i.type)}</div>
-            <div class="meta">${escapeHtml(i.date||i.created)} • ${escapeHtml(i.result||'')}</div>
-            <div class="small" style="margin-top:6px">${escapeHtml(i.notes||'')}</div>
-          </div>
-          <div class="controls actions">
-            <button onclick="editInspection('${i.id}')">Edit</button>
-            <button onclick="deleteInspection('${i.id}')">Delete</button>
-          </div>
-        </div>
-      `).join('') : `<div class="empty">No inspections recorded yet.</div>`}
-    </div>
-  `;
-
-  document.getElementById('saveInspection').addEventListener('click', ()=>{
-    const type = document.getElementById('insType').value.trim();
-    if(!type){ alert('Enter inspection type'); return; }
-    const ins = {
-      id: id('ins_'),
-      type,
-      date: document.getElementById('insDate').value || '',
-      result: document.getElementById('insResult').value || '',
-      notes: document.getElementById('insNotes').value || '',
-      created: now()
-    };
-    state.inspections.unshift(ins);
-    saveData(state); renderInspections(); renderSummary(); showToast('Inspection saved');
-  });
-  document.getElementById('clearInspection').addEventListener('click', ()=>{
-    ['insType','insDate','insResult','insNotes'].forEach(id=> { const el=document.getElementById(id); if(el) el.value=''; });
-  });
-}
-
-window.editInspection = function(idIns){
-  const ins = state.inspections.find(x=> x.id===idIns);
-  if(!ins) return;
-  showView('inspections');
-  setTimeout(()=>{
-    document.getElementById('insType').value = ins.type || '';
-    document.getElementById('insDate').value = ins.date || '';
-    document.getElementById('insResult').value = ins.result || '';
-    document.getElementById('insNotes').value = ins.notes || '';
-    const saveBtn = document.getElementById('saveInspection');
-    const newBtn = saveBtn.cloneNode(true);
-    saveBtn.parentNode.replaceChild(newBtn, saveBtn);
-    newBtn.addEventListener('click', ()=>{
-      ins.type = document.getElementById('insType').value.trim();
-      ins.date = document.getElementById('insDate').value;
-      ins.result = document.getElementById('insResult').value;
-      ins.notes = document.getElementById('insNotes').value;
-      saveData(state); renderInspections(); renderSummary(); showToast('Inspection updated');
-    });
-  }, 60);
-};
-
-window.deleteInspection = function(iid){
-  if(!confirm('Delete this inspection?')) return;
-  state.inspections = state.inspections.filter(x=> x.id!==iid);
-  saveData(state); renderInspections(); renderSummary(); showToast('Inspection deleted');
-};
-
-// utilities
-function showToast(text, ms=1600){
-  // small ephemeral toast at bottom-right
-  const el = document.createElement('div');
-  el.textContent = text;
-  el.style.position = 'fixed'; el.style.right = '18px'; el.style.bottom = '18px';
-  el.style.background = 'rgba(20,20,20,0.9)'; el.style.color = 'white'; el.style.padding = '8px 12px';
-  el.style.borderRadius = '8px'; el.style.boxShadow = '0 6px 18px rgba(0,0,0,0.6)'; el.style.zIndex = 9999;
-  document.body.appendChild(el);
-  setTimeout(()=> { el.style.transition = 'opacity 260ms'; el.style.opacity = 0; setTimeout(()=> el.remove(), 300); }, ms);
-}
-
-// helper to focus the new item form
-function focusNew(kind){
-  if(kind==='note'){ showView('notes'); setTimeout(()=> document.getElementById('noteTitle').focus(), 80); }
-  if(kind==='event'){ showView('events'); setTimeout(()=> document.getElementById('evTitle').focus(), 80); }
-  if(kind==='inspection'){ showView('inspections'); setTimeout(()=> document.getElementById('insType').focus(), 80); }
-}
-
-// initial small flourish: seed with example if empty (only first time)
-(function seedIfEmpty(){
-  if(state.notes.length || state.events.length || state.inspections.length) return;
-  state.notes.push({id:id('note_'), title:'First log entry', body:'RMP unit on standby. Routine patrol completed. No incidents.', ts:now()});
-  state.events.push({id:id('ev_'), title:'Morning parade', date: new Date(Date.now()+86400000).toISOString().slice(0,10), time:'08:30', location:'Drill square', type:'Duty', notes:'All ranks in No.1 Dress', created:now()});
-  state.inspections.push({id:id('ins_'), type:'Barracks cleanliness', date: new Date().toISOString().slice(0,10), result:'Pass', notes:'Minor improvements required in storeroom', created:now()});
-  saveData(state); renderSummary();
-})();
-
-</script>
+  <footer>
+    © Royal Military Police — Inspection Schedule
+  </footer>
 </body>
 </html>
