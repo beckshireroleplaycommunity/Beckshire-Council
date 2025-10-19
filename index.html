@@ -1,410 +1,199 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Beckshire Council — Home</title>
-  <meta name="description" content="Beckshire Council — services, news and council information">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Royal Military Police - Command Portal</title>
   <style>
-    :root{
-      --accent:#0b67a3; /* civic blue */
-      --accent-2:#0f8ccf;
-      --bg:#f4f6f8;
-      --muted:#6b7280;
-      --card:#ffffff;
-      --maxw:1180px;
-      --radius:10px;
-      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;background:var(--bg);color:#0b1220;line-height:1.5;-webkit-font-smoothing:antialiased}
-    a{color:var(--accent);text-decoration:none}
-
-        /* Weather Alert Banner */
-    .weather-alert {
-      background: #c1121f; /* red background */
-      color: #ffffff;      /* white text */
-      text-align: center;
-      padding: 10px 16px;
-      font-weight: 600;
-      font-size: 15px;
-      letter-spacing: 0.3px;
-      border-bottom: 2px solid #9b0d19;
-    }
-
-        .office-status {
-      background: #333;
-      color: #fff;
-      text-align: center;
-      padding: 10px 16px;
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-      border-bottom: 2px solid #2B2B2B;
-    }
-
-    /* Layout */
-    header{background:#fff;border-bottom:1px solid #e6e9ec;position:sticky;top:0;z-index:30}
-    .wrap{max-width:var(--maxw);margin:0 auto;padding:16px}
-    .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:68px;height:68px;display:block}
-    .site-title{font-size:18px;margin:0}
-    .site-sub{font-size:13px;color:var(--muted)}
-
-    /* nav */
-    nav{margin-top:10px}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .navlist{display:flex;gap:8px;flex-wrap:wrap}
-    .navlist a{padding:8px 10px;border-radius:8px;font-weight:600}
-    .navlist a:focus{outline:3px solid rgba(11,103,163,0.18)}
-    .cta{background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px}
-
-    /* hamburger */
-    .hamburger{display:none;border:0;background:transparent;padding:8px}
-
-    /* hero */
-    main{max-width:var(--maxw);margin:20px auto;padding:0 16px}
-    .hero{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start}
-    .card{background:var(--card);padding:20px;border-radius:var(--radius);border:1px solid #e9eef2}
-    .search{display:flex;margin-top:12px}
-    .search input{flex:1;padding:12px;border:1px solid #d6d9de;border-right:0;border-radius:8px 0 0 8px}
-    .search button{padding:12px;border:1px solid #d6d9de;border-left:0;border-radius:0 8px 8px 0;background:var(--accent);color:white}
-
-    /* services grid */
-    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px}
-    .tile{padding:14px;border-radius:8px;border:1px solid #eef1f4;background:var(--card)}
-
-    /* news */
-    .grid-wide{display:grid;grid-template-columns:1fr 320px;gap:18px;margin-top:16px}
-    .news-list{display:grid;gap:12px}
-    .news-item{padding:14px;border-radius:8px;border:1px solid #eef1f4;background:var(--card)}
-
-    /* footer */
-    footer{background:#fff;border-top:1px solid #e6e9ec;margin-top:28px}
-    .site-footer{max-width:var(--maxw);margin:0 auto;padding:20px;display:flex;gap:20px;flex-wrap:wrap;align-items:center}
-    .footer-col{min-width:160px}
-
-    /* utilities */
-    .muted{color:var(--muted);font-size:14px}
-    .breadcrumbs{font-size:13px;color:var(--muted);margin-bottom:8px}
-
-    /* responsive */
-    @media (max-width:980px){
-      .hero{grid-template-columns:1fr}
-      .grid-wide{grid-template-columns:1fr}
-    }
-    @media (max-width:760px){
-      .navlist{display:none}
-      .hamburger{display:inline-block}
-    }
-    
-    /* small enhancements */
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    body { font-family: Arial, sans-serif; background: #f4f4f8; margin: 0; padding: 0; }
+    header { background: #8b0000; color: white; padding: 1rem; text-align: center; }
+    nav { display: flex; justify-content: center; gap: 1rem; margin: 1rem 0; }
+    nav button { background: white; border: 1px solid #ccc; padding: 0.5rem 1rem; cursor: pointer; border-radius: 6px; }
+    main { max-width: 900px; margin: auto; background: white; padding: 1rem 2rem; border-radius: 10px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+    h2 { border-bottom: 2px solid #8b0000; padding-bottom: 0.3rem; color: #8b0000; }
+    input, textarea { width: 100%; padding: 0.5rem; margin: 0.3rem 0; border-radius: 5px; border: 1px solid #ccc; }
+    button.add { background: #8b0000; color: white; border: none; padding: 0.5rem 1rem; margin-top: 0.5rem; border-radius: 5px; }
+    ul { list-style: none; padding: 0; }
+    li { border: 1px solid #ddd; padding: 0.5rem; margin: 0.4rem 0; border-radius: 5px; }
+    .hidden { display: none; }
+    .controls button { margin-right: 0.3rem; }
   </style>
 </head>
 <body>
-  <div class="weather-alert" role="alert" aria-live="assertive">
-    Severe weather warning in effect for Beckshire. Please avoid unnecessary travel and check local updates.
-  </div>
 
-<div class="office-status"
-     style="background:#333; color:#fff; text-align:center; padding:0.8rem; font-size:1rem; font-weight:700; font-family:Arial, sans-serif;">
-  Our offices are now closed. 
-  <a href="https://sites.google.com/view/beckshire-police-roblox/hidden/report" 
-     style="color:#fff; text-decoration:underline; margin-left:0.2rem;">
-     Click here to report an out of hours emergency
-  </a>
-</div>
-  
-  </style>
-</head>
-<body>
-  <a class="sr-only" href="#main">Skip to main content</a>
-  <header role="banner">
-    <div class="wrap topbar">
-      <div class="brand">
-        <img src="beckshire-logo.png" alt="Beckshire Council" class="logo" onerror="this.style.display='none'">
-        <div>
-          <h1 class="site-title">Beckshire Council</h1>
-          <div class="site-sub">Serving the Beckshire community</div>
-        </div>
-      </div>
-
-      <div style="display:flex;align-items:center;gap:12px">
-        <!-- hamburger for mobile -->
-        <button class="hamburger" aria-controls="main-nav" aria-expanded="false" aria-label="Open menu" id="hamburger">☰</button>
-        <!-- top-right space reserved (no button as requested) -->
-      </div>
-    </div>
-
-    <nav class="wrap" aria-label="Main navigation">
-      <div class="nav-inner">
-        <div id="main-nav" class="navlist" role="menubar" aria-label="Primary">
-          <a role="menuitem" href="#home" data-target="home">Home</a>
-          <a role="menuitem" href="#services" data-target="services">Council services</a>
-          <a role="menuitem" href="#bins" data-target="bins">Bins & recycling</a>
-          <a role="menuitem" href="#planning" data-target="planning">Planning & building</a>
-          <a role="menuitem" href="#council-tax" data-target="council-tax">Council tax</a>
-          <a role="menuitem" href="#housing" data-target="housing">Housing</a>
-          <a role="menuitem" href="#news" data-target="news">News</a>
-          <a role="menuitem" href="#contact" data-target="contact">Contact us</a>
-          <a role="menuitem" href="#about" data-target="about">About</a>
-          <a class="cta" role="menuitem" href="#pay-or-report" data-target="pay-or-report">Pay or report</a>
-        </div>
-      </div>
-    </nav>
+  <header>
+    <h1>Royal Military Police - Command Portal</h1>
+    <p>Manage command team, inspections, and practice inspections</p>
   </header>
 
-  <main id="main">
-    <div class="wrap">
-      <!-- HOME -->
-      <section id="home" class="page" tabindex="-1">
-        <div class="hero">
-          <div class="card">
-            <div class="breadcrumbs">Home</div>
-            <h2 style="margin-top:0">Pay bills, report issues, book services</h2>
-            <p class="muted">Find council services, report problems and get the latest updates from Beckshire Council.</p>
+  <nav>
+    <button onclick="showView('team')">Command Team</button>
+    <button onclick="showView('inspections')">Inspections</button>
+    <button onclick="showView('practice')">Practice</button>
+    <button onclick="exportData()">Export</button>
+    <label style="background:white;border:1px solid #ccc;padding:0.5rem 1rem;border-radius:6px;cursor:pointer;">
+      Import <input type="file" accept="application/json" onchange="importData(event)" style="display:none;">
+    </label>
+  </nav>
 
-            <form class="search" role="search" onsubmit="event.preventDefault();alert('Search is a demo on this static site.');">
-              <label for="q" class="sr-only">Search site</label>
-              <input id="q" placeholder="Search services, pages, forms..." aria-label="Search site">
-              <button type="submit" aria-label="Search">Search</button>
-            </form>
+  <main>
+    <!-- Command Team -->
+    <section id="team" class="view">
+      <h2>Command Team</h2>
+      <input id="rank" placeholder="Rank" />
+      <input id="name" placeholder="Name" />
+      <input id="role" placeholder="Role" />
+      <input id="contact" placeholder="Contact Info" />
+      <button class="add" onclick="addMember()">Add Member</button>
+      <ul id="teamList"></ul>
+    </section>
 
-            <div class="services-grid" aria-label="Quick services">
-              <article class="tile">
-                <h3>Report fly tipping</h3>
-                <p class="muted">Report waste dumping and environmental problems.</p>
-              </article>
-              <article class="tile">
-                <h3>Bins & recycling</h3>
-                <p class="muted">Find your collection day and recycling guidance.</p>
-              </article>
-              <article class="tile">
-                <h3>Planning applications</h3>
-                <p class="muted">View and submit planning applications.</p>
-              </article>
-              <article class="tile">
-                <h3>Council tax</h3>
-                <p class="muted">Pay online or query your bill.</p>
-              </article>
-            </div>
-          </div>
+    <!-- Inspections -->
+    <section id="inspections" class="view hidden">
+      <h2>Inspections</h2>
+      <input id="inspectionTitle" placeholder="Inspection Title" />
+      <input id="inspectionDate" type="date" />
+      <textarea id="inspectionNotes" placeholder="Notes"></textarea>
+      <button class="add" onclick="addInspection()">Add Inspection</button>
+      <ul id="inspectionList"></ul>
+    </section>
 
-          <aside class="card" aria-labelledby="quick-links">
-            <h3 id="quick-links" style="margin-top:0">Quick links</h3>
-            <ul style="padding-left:18px;margin-top:8px;color:var(--muted)">
-              <li><a href="#bins" data-target="bins">Bin collection days</a></li>
-              <li><a href="#planning" data-target="planning">Apply for planning</a></li>
-              <li><a href="#news" data-target="news">Latest news</a></li>
-              <li><a href="#contact" data-target="contact">Contact us</a></li>
-            </ul>
-          </aside>
-        </div>
-
-        <div style="margin-top:18px">
-          <h3 style="margin-bottom:8px">Latest from Beckshire</h3>
-          <div class="grid-wide">
-            <div class="news-list">
-              <article class="news-item">
-                <strong>New recycling scheme launches</strong>
-                <div class="muted">15 Oct 2025</div>
-                <p>Beckshire is rolling out a new household recycling scheme to improve waste separation.</p>
-              </article>
-              <article class="news-item">
-                <strong>Planning consultation</strong>
-                <div class="muted">1 Oct 2025</div>
-                <p>We are consulting on proposed housing developments across Beckshire. Have your say.</p>
-              </article>
-              <article class="news-item">
-                <strong>Roadworks on High Street</strong>
-                <div class="muted">20 Sep 2025</div>
-                <p>Temporary diversions are in place while essential repairs are completed.</p>
-              </article>
-            </div>
-
-            <aside>
-              <div class="card">
-                <h4 style="margin-top:0">Service updates</h4>
-                <ul style="padding-left:18px;color:var(--muted)">
-                  <li>Council meetings: live stream links</li>
-                  <li>Garden waste registration open</li>
-                  <li>Community grants available</li>
-                </ul>
-                <a class="cta" href="#news" data-target="news" style="display:inline-block;margin-top:10px">More news</a>
-              </div>
-            </aside>
-          </div>
-        </div>
-      </section>
-
-      <!-- SERVICES -->
-      <section id="services" class="page hidden" tabindex="-1">
-        <h2>Council services</h2>
-        <p class="muted">All services provided by Beckshire Council.</p>
-        <div class="services-grid" style="margin-top:12px">
-          <div class="tile"><h3>Bins & recycling</h3><p class="muted">Schedules, guidelines and bulky waste.</p></div>
-          <div class="tile"><h3>Planning & building</h3><p class="muted">Applications, decisions and guidance.</p></div>
-          <div class="tile"><h3>Council tax</h3><p class="muted">Payments, discounts and queries.</p></div>
-          <div class="tile"><h3>Housing</h3><p class="muted">Support, applications and schemes.</p></div>
-          <div class="tile"><h3>Business rates</h3><p class="muted">For local businesses.</p></div>
-          <div class="tile"><h3>Leisure & parks</h3><p class="muted">Parks, sports and events.</p></div>
-        </div>
-      </section>
-
-      <!-- BINS -->
-      <section id="bins" class="page hidden" tabindex="-1">
-        <h2>Bins & recycling</h2>
-        <p class="muted">Find collection days, recycling tips and how to report missed collections.</p>
-        <div class="card" style="margin-top:12px">
-          <h3>Find your collection day</h3>
-          <p class="muted">This demo page is static; on a live site we'd provide a postcode lookup.</p>
-        </div>
-      </section>
-
-      <!-- PLANNING -->
-      <section id="planning" class="page hidden" tabindex="-1">
-        <h2>Planning & building</h2>
-        <p class="muted">Apply for planning permission, view applications and appeal decisions.</p>
-      </section>
-
-      <!-- COUNCIL TAX -->
-      <section id="council-tax" class="page hidden" tabindex="-1">
-        <h2>Council tax</h2>
-        <p class="muted">Pay online, ask about discounts and exemptions.</p>
-      </section>
-
-      <!-- HOUSING -->
-      <section id="housing" class="page hidden" tabindex="-1">
-        <h2>Housing</h2>
-        <p class="muted">Support, applications and homelessness advice.</p>
-      </section>
-
-      <!-- NEWS -->
-      <section id="news" class="page hidden" tabindex="-1">
-        <h2>Latest news</h2>
-        <div class="news-list" style="margin-top:12px">
-          <article class="news-item"><strong>New recycling scheme launches</strong><div class="muted">15 Oct 2025</div><p>Beckshire is rolling out new household recycling bins...</p></article>
-          <article class="news-item"><strong>Planning consultation</strong><div class="muted">18 Oct 2025</div><p>We are consulting on proposed housing developments...</p></article>
-          <article class="news-item"><strong>New streets</strong><div class="muted">20 Oct 2025</div><p>We are constructing new streets to improve transport...</p></article>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section id="contact" class="page hidden" tabindex="-1">
-        <h2>Contact us</h2>
-        <p class="muted">If you have a question, need help with one of our services, or want to share feedback, our support team is here to help. You can get in touch by messaging the Leader of the Council (@Littlefoxyalex) or by visiting our Discord server (https://discord.gg/rpJRUBU8mA). For general enquiries, residents are encouraged to reach out through the official communication channels provided on the website. Beckshire Council aims to respond to all messages promptly and ensure every enquiry is directed to the right department.</p>
-        </div>
-      </section>
-
-      <!-- ABOUT -->
-      <section id="about" class="page hidden" tabindex="-1">
-        <h2>About Beckshire Council</h2>
-        <p class="muted">Beckshire Council is the local authority responsible for the Borough of Beckshire, dedicated to delivering high-quality services, supporting local communities, and ensuring a safe, sustainable and thriving place for everyone. Our mission is to make Beckshire a great place to live, work, visit and do business. We provide a wide range of essential services, including waste collection, housing, planning, environmental protection, transport, leisure and community development. Guided by transparency, accountability and public engagement, we work closely with residents, community groups and local businesses to shape a better future for the borough. Through strong partnerships and a shared commitment to fairness and sustainability, Beckshire Council strives to protect the environment, support economic growth, improve public spaces and enhance the quality of life for all who call Beckshire home.</p>
-      </section>
-
-      <!-- PAY OR REPORT -->
-      <section id="pay-or-report" class="page hidden" tabindex="-1">
-        <h2>Pay or report</h2>
-        <p class="muted">Make payments or report an issue to the council.</p>
-        <div class="card" style="margin-top:12px">
-          <h3>Pay or report</h3>
-          <ul style="padding-left:18px;color:var(--muted)">
-            <li>Pay council tax or business rates</li>
-            <li>Report a missed bin collection</li>
-            <li>Report highways or environmental issues</li>
-          </ul>
-        </div>
-      </section>
-
-    </div>
+    <!-- Practice Inspections -->
+    <section id="practice" class="view hidden">
+      <h2>Practice Inspections</h2>
+      <input id="practiceTitle" placeholder="Practice Title" />
+      <textarea id="practiceChecklist" placeholder="Checklist (comma separated)"></textarea>
+      <button class="add" onclick="addPractice()">Add Practice Template</button>
+      <ul id="practiceList"></ul>
+    </section>
   </main>
 
-  <footer role="contentinfo">
-    <div class="site-footer">
-      <div class="footer-col">
-        <img src="beckshire-logo.png" alt="Beckshire Council" style="width:84px;height:auto">
-        <div class="muted" style="margin-top:8px">Beckshire Council</div>
-      </div>
-
-      <div class="footer-col">
-        <strong>Quick links</strong>
-        <ul style="padding-left:18px;margin-top:8px;color:var(--muted)">
-          <li><a href="#privacy" data-target="about">Privacy</a></li>
-          <li><a href="#cookies" data-target="about">Cookies</a></li>
-          <li><a href="#accessibility" data-target="about">Accessibility</a></li>
-        </ul>
-      </div>
-
-      <div class="muted" style="margin-left:auto">© Beckshire Council</div>
-    </div>
-  </footer>
-
   <script>
-    // Routing + navigation handling
-    const sections = Array.from(document.querySelectorAll('.page'));
-    const navLinks = Array.from(document.querySelectorAll('[data-target]'));
+    const STORAGE_KEY = "rmp_portal_data";
+    let data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"team":[],"inspections":[],"practice":[]}');
 
-    function show(id){
-      sections.forEach(s => s.classList.add('hidden'));
-      const el = document.getElementById(id);
-      if(el){
-        el.classList.remove('hidden');
-        el.scrollIntoView({behavior:'smooth'});
-        // focus heading for screen readers
-        const h = el.querySelector('h2'); if(h){ h.tabIndex=-1; h.focus(); }
-      }
+    function save() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      render();
     }
 
-    // link click handler
-    navLinks.forEach(a => {
-      a.addEventListener('click', (e) => {
-        const target = a.dataset.target || a.getAttribute('href').replace('#','');
-        if(target){
-          e.preventDefault();
-          location.hash = target;
-          show(target);
-          // close mobile menu if open
-          toggleMobile(false);
+    function showView(id) {
+      document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    // ---- TEAM ----
+    function addMember() {
+      const rank = rankInput.value.trim(), name = nameInput.value.trim();
+      if (!name) return;
+      data.team.push({ id: Date.now(), rank, name, role: roleInput.value, contact: contactInput.value });
+      rankInput.value = nameInput.value = roleInput.value = contactInput.value = "";
+      save();
+    }
+
+    function deleteMember(id) {
+      data.team = data.team.filter(m => m.id !== id);
+      save();
+    }
+
+    // ---- INSPECTIONS ----
+    function addInspection() {
+      const title = inspectionTitle.value.trim();
+      if (!title) return;
+      data.inspections.push({ id: Date.now(), title, date: inspectionDate.value, notes: inspectionNotes.value, completed: false });
+      inspectionTitle.value = inspectionNotes.value = ""; inspectionDate.value = "";
+      save();
+    }
+
+    function toggleInspection(id) {
+      const i = data.inspections.find(x => x.id === id);
+      if (i) i.completed = !i.completed;
+      save();
+    }
+
+    function deleteInspection(id) {
+      data.inspections = data.inspections.filter(i => i.id !== id);
+      save();
+    }
+
+    // ---- PRACTICE ----
+    function addPractice() {
+      const title = practiceTitle.value.trim();
+      if (!title) return;
+      const checklist = practiceChecklist.value.split(',').map(x => x.trim()).filter(Boolean);
+      data.practice.push({ id: Date.now(), title, checklist });
+      practiceTitle.value = practiceChecklist.value = "";
+      save();
+    }
+
+    function deletePractice(id) {
+      data.practice = data.practice.filter(p => p.id !== id);
+      save();
+    }
+
+    // ---- EXPORT / IMPORT ----
+    function exportData() {
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'rmp-data.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function importData(ev) {
+      const file = ev.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          data = JSON.parse(reader.result);
+          save();
+        } catch {
+          alert('Invalid JSON file');
         }
-      });
-    });
-
-    // hashchange support
-    window.addEventListener('hashchange', () => {
-      const id = location.hash.replace('#','') || 'home';
-      show(id);
-    });
-
-    // initial load
-    (function(){
-      const init = location.hash.replace('#','') || 'home';
-      show(init);
-    })();
-
-    // mobile menu
-    const hamburger = document.getElementById('hamburger');
-    const mainNav = document.getElementById('main-nav');
-    function toggleMobile(open){
-      const expanded = open === undefined ? hamburger.getAttribute('aria-expanded') === 'false' : !open ? false : true;
-      if(expanded){
-        mainNav.style.display = 'flex';
-        mainNav.style.flexDirection = 'column';
-        mainNav.style.gap = '6px';
-        hamburger.setAttribute('aria-expanded','true');
-      } else {
-        mainNav.style.display = '';
-        hamburger.setAttribute('aria-expanded','false');
-      }
+      };
+      reader.readAsText(file);
     }
-    hamburger && hamburger.addEventListener('click', ()=>{ toggleMobile(true); });
 
-    // Accessibility: close mobile menu on resize
-    window.addEventListener('resize', ()=>{
-      if(window.innerWidth > 760){ mainNav.style.display = ''; hamburger && hamburger.setAttribute('aria-expanded','false'); }
-    });
+    // ---- RENDER ----
+    function render() {
+      const teamList = document.getElementById('teamList');
+      teamList.innerHTML = data.team.map(m => `
+        <li>
+          <strong>${m.rank} ${m.name}</strong><br>
+          <small>${m.role} ${m.contact ? '• ' + m.contact : ''}</small><br>
+          <button onclick="deleteMember(${m.id})">Delete</button>
+        </li>
+      `).join('');
+
+      const inspectionList = document.getElementById('inspectionList');
+      inspectionList.innerHTML = data.inspections.map(i => `
+        <li>
+          <strong>${i.title}</strong> (${i.date || 'No date'})<br>
+          <small>${i.notes || ''}</small><br>
+          <button onclick="toggleInspection(${i.id})">${i.completed ? 'Mark Pending' : 'Mark Done'}</button>
+          <button onclick="deleteInspection(${i.id})">Delete</button>
+        </li>
+      `).join('');
+
+      const practiceList = document.getElementById('practiceList');
+      practiceList.innerHTML = data.practice.map(p => `
+        <li>
+          <strong>${p.title}</strong><br>
+          <small>${p.checklist.join(', ')}</small><br>
+          <button onclick="deletePractice(${p.id})">Delete</button>
+        </li>
+      `).join('');
+    }
+
+    const rankInput = document.getElementById('rank');
+    const nameInput = document.getElementById('name');
+    const roleInput = document.getElementById('role');
+    const contactInput = document.getElementById('contact');
+    render();
   </script>
+
 </body>
 </html>
