@@ -1,409 +1,488 @@
+<!--
+329-squadron-badge.html
+Updated: full RAF Air Training Corps style squadron site mockup
+Drop your 329 squadron logo as: 329-logo.png in same folder (or edit the path)
+This file is self-contained and suitable for GitHub Pages. It includes responsive layout, sections for news, events, join, contact, and accessibility features.
+-->
+
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Beckshire Council — Home</title>
-  <meta name="description" content="Beckshire Council — services, news and council information">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>329 (Finsbury) Squadron | Air Training Corps</title>
+  <meta name="description" content="Official page mockup for 329 Squadron — Air Training Corps. News, events, joining info and contact details for cadets, staff and parents." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    /* -------------------------
+       Base / Reset
+       -------------------------*/
     :root{
-      --accent:#0b67a3; /* civic blue */
-      --accent-2:#0f8ccf;
-      --bg:#f4f6f8;
+      --raf-blue:#002f6c;
+      --raf-light:#1c5aa6;
+      --gold:#c99b45;
       --muted:#6b7280;
+      --bg:#f5f7fa;
       --card:#ffffff;
-      --maxw:1180px;
-      --radius:10px;
-      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      --accent:#dbeafe;
+      --max-width:1100px;
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;background:var(--bg);color:#0b1220;line-height:1.5;-webkit-font-smoothing:antialiased}
-    a{color:var(--accent);text-decoration:none}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;background:var(--bg);color:#0b1220}
+    a{color:inherit}
 
-        /* Weather Alert Banner */
-    .weather-alert {
-      background: #c1121f; /* red background */
-      color: #ffffff;      /* white text */
-      text-align: center;
-      padding: 10px 16px;
-      font-weight: 600;
-      font-size: 15px;
-      letter-spacing: 0.3px;
-      border-bottom: 2px solid #9b0d19;
-    }
+    /* -------------------------
+       Utilities
+       -------------------------*/
+    .container{max-width:var(--max-width);margin:0 auto;padding:24px}
+    .grid{display:grid;gap:18px}
+    .flex{display:flex;gap:12px;align-items:center}
+    .btn{background:var(--raf-blue);color:#fff;padding:10px 14px;border-radius:8px;border:0;cursor:pointer;font-weight:700}
+    .btn.secondary{background:transparent;border:2px solid var(--raf-blue);color:var(--raf-blue)}
+    h1,h2,h3{margin:0}
+    p{margin:0}
 
-        .office-status {
-      background: #333;
-      color: #fff;
-      text-align: center;
-      padding: 10px 16px;
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-      border-bottom: 2px solid #2B2B2B;
-    }
+    /* -------------------------
+       Header
+       -------------------------*/
+    header.site-header{background:linear-gradient(180deg,var(--raf-blue),var(--raf-light));color:#fff;padding:18px 0;box-shadow:0 6px 18px rgba(2,6,23,0.16)}
+    .brand{display:flex;align-items:center;gap:14px}
+    .brand img{width:68px;height:68px;object-fit:contain;border-radius:10px;background:#fff;padding:6px}
+    .brand h1{font-family:Roboto Slab, serif;font-size:20px}
+    nav{margin-left:auto}
+    nav ul{list-style:none;display:flex;gap:12px;margin:0;padding:0}
+    nav a{color:#fff;text-decoration:none;font-weight:600;padding:8px 10px;border-radius:8px}
+    nav a:hover{background:rgba(255,255,255,0.06)}
+    .topbar{display:flex;align-items:center;gap:18px}
 
-    /* Layout */
-    header{background:#fff;border-bottom:1px solid #e6e9ec;position:sticky;top:0;z-index:30}
-    .wrap{max-width:var(--maxw);margin:0 auto;padding:16px}
-    .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:68px;height:68px;display:block}
-    .site-title{font-size:18px;margin:0}
-    .site-sub{font-size:13px;color:var(--muted)}
+    /* -------------------------
+       Hero
+       -------------------------*/
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:22px;align-items:stretch;padding:36px 0}
+    .hero-card{background:linear-gradient(180deg,#fff, #fbfdff);border-radius:14px;padding:26px;box-shadow:0 8px 30px rgba(11,18,32,0.06)}
+    .hero h2{font-size:28px;color:var(--raf-blue);margin-bottom:8px}
+    .hero p.lead{color:var(--muted);margin-top:6px}
+    .cta-row{margin-top:18px;display:flex;gap:12px}
+    .activity-list{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+    .activity{display:flex;align-items:center;gap:12px}
+    .pill{background:var(--accent);padding:8px 10px;border-radius:8px;font-weight:700;color:var(--raf-blue)}
 
-    /* nav */
-    nav{margin-top:10px}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .navlist{display:flex;gap:8px;flex-wrap:wrap}
-    .navlist a{padding:8px 10px;border-radius:8px;font-weight:600}
-    .navlist a:focus{outline:3px solid rgba(11,103,163,0.18)}
-    .cta{background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px}
+    /* right column cards */
+    .info-card{background:linear-gradient(180deg,#fbfbff,#f7fbff);border-radius:12px;padding:18px}
+    .info-card small{display:block;color:var(--muted);margin-bottom:8px}
 
-    /* hamburger */
-    .hamburger{display:none;border:0;background:transparent;padding:8px}
+    /* -------------------------
+       News + Events
+       -------------------------*/
+    .two-col{display:grid;grid-template-columns:1fr 360px;gap:22px}
+    .news-item{background:var(--card);padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(6,10,21,0.04)}
+    .news-item h3{color:var(--raf-blue);font-size:18px}
+    .meta{color:var(--muted);font-size:13px;margin-top:8px}
 
-    /* hero */
-    main{max-width:var(--maxw);margin:20px auto;padding:0 16px}
-    .hero{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start}
-    .card{background:var(--card);padding:20px;border-radius:var(--radius);border:1px solid #e9eef2}
-    .search{display:flex;margin-top:12px}
-    .search input{flex:1;padding:12px;border:1px solid #d6d9de;border-right:0;border-radius:8px 0 0 8px}
-    .search button{padding:12px;border:1px solid #d6d9de;border-left:0;border-radius:0 8px 8px 0;background:var(--accent);color:white}
+    .events-list{display:flex;flex-direction:column;gap:12px}
+    .event{background:linear-gradient(180deg,#fff,#fcfdff);padding:12px;border-radius:10px;border-left:4px solid var(--raf-light)}
+    .event time{font-weight:700;color:var(--raf-blue);display:block}
 
-    /* services grid */
-    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px}
-    .tile{padding:14px;border-radius:8px;border:1px solid #eef1f4;background:var(--card)}
+    /* -------------------------
+       About / Join
+       -------------------------*/
+    .card{background:var(--card);padding:18px;border-radius:12px}
+    .leaders{display:flex;gap:12px;align-items:center}
+    .leader{display:flex;gap:12px;align-items:center}
+    .leader img{width:64px;height:64px;border-radius:8px;object-fit:cover}
 
-    /* news */
-    .grid-wide{display:grid;grid-template-columns:1fr 320px;gap:18px;margin-top:16px}
-    .news-list{display:grid;gap:12px}
-    .news-item{padding:14px;border-radius:8px;border:1px solid #eef1f4;background:var(--card)}
+    .join-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .form-row{display:flex;flex-direction:column;gap:6px}
+    label{font-weight:600;color:var(--muted);font-size:13px}
+    input[type=text],input[type=email],textarea,select{padding:10px;border-radius:8px;border:1px solid #e6eef9;background:#fbfdff}
+    textarea{min-height:120px}
 
-    /* footer */
-    footer{background:#fff;border-top:1px solid #e6e9ec;margin-top:28px}
-    .site-footer{max-width:var(--maxw);margin:0 auto;padding:20px;display:flex;gap:20px;flex-wrap:wrap;align-items:center}
-    .footer-col{min-width:160px}
+    /* -------------------------
+       Gallery / Resources
+       -------------------------*/
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .gallery img{width:100%;height:140px;object-fit:cover;border-radius:8px}
 
-    /* utilities */
-    .muted{color:var(--muted);font-size:14px}
-    .breadcrumbs{font-size:13px;color:var(--muted);margin-bottom:8px}
+    /* -------------------------
+       Footer
+       -------------------------*/
+    footer{margin-top:30px;padding:20px 0;color:var(--muted)}
+    .footer-grid{display:grid;grid-template-columns:1fr 220px;gap:18px}
+    .social a{display:inline-block;margin-right:10px}
 
-    /* responsive */
+    /* -------------------------
+       Responsive
+       -------------------------*/
     @media (max-width:980px){
+      .hero,.two-col{grid-template-columns:1fr}
+      nav ul{display:none}
+    }
+    @media (max-width:680px){
+      .container{padding:14px}
+      .gallery{grid-template-columns:repeat(2,1fr)}
       .hero{grid-template-columns:1fr}
-      .grid-wide{grid-template-columns:1fr}
+      .hero-card{padding:18px}
+      .brand img{width:56px;height:56px}
     }
-    @media (max-width:760px){
-      .navlist{display:none}
-      .hamburger{display:inline-block}
-    }
-    
-    /* small enhancements */
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-  </style>
-</head>
-<body>
-  <div class="weather-alert" role="alert" aria-live="assertive">
-    Severe weather warning in effect for Beckshire. Please avoid unnecessary travel and check local updates.
-  </div>
 
-<div class="office-status"
-     style="background:#333; color:#fff; text-align:center; padding:0.8rem; font-size:1rem; font-weight:700; font-family:Arial, sans-serif;">
-  Our offices are now closed. 
-  <a href="https://sites.google.com/view/beckshire-police-roblox/hidden/report" 
-     style="color:#fff; text-decoration:underline; margin-left:0.2rem;">
-     Click here to report an out of hours emergency
-  </a>
-</div>
-  
+    /* accessibility focus */
+    a:focus,button:focus,input:focus,textarea:focus{outline:3px solid rgba(28,90,166,0.16);outline-offset:2px}
   </style>
 </head>
 <body>
-  <a class="sr-only" href="#main">Skip to main content</a>
-  <header role="banner">
-    <div class="wrap topbar">
-      <div class="brand">
-        <img src="beckshire-logo.png" alt="Beckshire Council" class="logo" onerror="this.style.display='none'">
-        <div>
-          <h1 class="site-title">Beckshire Council</h1>
-          <div class="site-sub">Serving the Beckshire community</div>
+  <header class="site-header">
+    <div class="container" role="banner">
+      <div class="flex topbar" style="width:100%">
+        <div class="brand">
+          <img src="329-logo.png" alt="329 Squadron badge" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2768%27 height=%2768%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23ffffff%27/%3E%3Ctext x=%2750%25%27 y=%2756%25%27 font-size=%2720%27 font-family=%27Arial%27 text-anchor=%27middle%27 fill=%27%23002f6c%27%3E329%3C/text%3E%3C/svg%3E'"/>
+          <div>
+            <h1>329 (Finsbury) Squadron</h1>
+            <div style="color:rgba(255,255,255,0.85);font-size:13px">Air Training Corps — City of London Wing</div>
+          </div>
         </div>
-      </div>
 
-      <div style="display:flex;align-items:center;gap:12px">
-        <!-- hamburger for mobile -->
-        <button class="hamburger" aria-controls="main-nav" aria-expanded="false" aria-label="Open menu" id="hamburger">☰</button>
-        <!-- top-right space reserved (no button as requested) -->
+        <nav aria-label="Primary navigation">
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#news">News</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#join">Join</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div style="margin-left:auto;display:flex;gap:10px;align-items:center">
+          <button class="btn" onclick="location.href='#join'">Join Us</button>
+          <a href="#contact" class="btn secondary" style="text-decoration:none;padding:8px 12px">Get in touch</a>
+        </div>
       </div>
     </div>
-
-    <nav class="wrap" aria-label="Main navigation">
-      <div class="nav-inner">
-        <div id="main-nav" class="navlist" role="menubar" aria-label="Primary">
-          <a role="menuitem" href="#home" data-target="home">Home</a>
-          <a role="menuitem" href="#services" data-target="services">Council services</a>
-          <a role="menuitem" href="#bins" data-target="bins">Bins & recycling</a>
-          <a role="menuitem" href="#planning" data-target="planning">Planning & building</a>
-          <a role="menuitem" href="#council-tax" data-target="council-tax">Council tax</a>
-          <a role="menuitem" href="#housing" data-target="housing">Housing</a>
-          <a role="menuitem" href="#news" data-target="news">News</a>
-          <a role="menuitem" href="#contact" data-target="contact">Contact us</a>
-          <a role="menuitem" href="#about" data-target="about">About</a>
-          <a class="cta" role="menuitem" href="#pay-or-report" data-target="pay-or-report">Pay or report</a>
-        </div>
-      </div>
-    </nav>
   </header>
 
-  <main id="main">
-    <div class="wrap">
-      <!-- HOME -->
-      <section id="home" class="page" tabindex="-1">
-        <div class="hero">
-          <div class="card">
-            <div class="breadcrumbs">Home</div>
-            <h2 style="margin-top:0">Pay bills, report issues, book services</h2>
-            <p class="muted">Find council services, report problems and get the latest updates from Beckshire Council.</p>
+  <main class="container" id="home" role="main">
 
-            <form class="search" role="search" onsubmit="event.preventDefault();alert('Search is a demo on this static site.');">
-              <label for="q" class="sr-only">Search site</label>
-              <input id="q" placeholder="Search services, pages, forms..." aria-label="Search site">
-              <button type="submit" aria-label="Search">Search</button>
-            </form>
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="welcome">
+      <div class="hero-card">
+        <h2 id="welcome">Welcome to 329 (Finsbury) Squadron</h2>
+        <p class="lead">We’re the Air Training Corps squadron serving young people across the City of London. We provide adventurous training, leadership opportunities, flying experience and skills for life — inspired by the Royal Air Force.</p>
 
-            <div class="services-grid" aria-label="Quick services">
-              <article class="tile">
-                <h3>Report fly tipping</h3>
-                <p class="muted">Report waste dumping and environmental problems.</p>
-              </article>
-              <article class="tile">
-                <h3>Bins & recycling</h3>
-                <p class="muted">Find your collection day and recycling guidance.</p>
-              </article>
-              <article class="tile">
-                <h3>Planning applications</h3>
-                <p class="muted">View and submit planning applications.</p>
-              </article>
-              <article class="tile">
-                <h3>Council tax</h3>
-                <p class="muted">Pay online or query your bill.</p>
-              </article>
+        <div class="cta-row">
+          <button class="btn" onclick="document.getElementById('join').scrollIntoView({behavior:'smooth'})">Join as a Cadet</button>
+          <button class="btn secondary" onclick="document.getElementById('news').scrollIntoView({behavior:'smooth'})">Latest News</button>
+        </div>
+
+        <div style="margin-top:16px">
+          <h3 style="font-size:16px;color:var(--raf-blue);margin-bottom:8px">This week at Squadron</h3>
+          <div class="activity-list">
+            <div class="activity"><span class="pill">NCO Training</span><div style="color:var(--muted)">Leadership and drill practice — Thurs 1900–2100</div></div>
+            <div class="activity"><span class="pill">Fieldcraft Exercise</span><div style="color:var(--muted)">Weekend exercise: navigation and teamwork — Sat/Sun</div></div>
+            <div class="activity"><span class="pill">Aviation Night</span><div style="color:var(--muted)">Guest speaker from RAF Regiment — Mon 1930</div></div>
+          </div>
+        </div>
+
+        <div style="margin-top:18px;display:flex;gap:12px;align-items:center">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/RAF_roundel.svg" alt="RAF roundel" style="width:54px;height:54px;opacity:0.9">
+          <div style="font-size:13px;color:var(--muted)">329 Squadron is committed to safeguarding and providing a supportive environment for all cadets. More details in the <a href="#resources">resources</a> section.</div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="info-card">
+          <small>Quick details</small>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div><strong>Parade Night:</strong> Thursday 19:00–21:00</div>
+            <div><strong>Location:</strong> Drill Hall, Finsbury</div>
+            <div><strong>Wing:</strong> City of London Wing</div>
+            <div><strong>Contact:</strong> adj329@example.org</div>
+          </div>
+
+          <hr style="margin:12px 0;border:none;border-top:1px solid #eef4ff">
+
+          <div style="display:flex;gap:8px;align-items:center;justify-content:space-between">
+            <div>
+              <div style="font-weight:800;color:var(--raf-blue);font-size:20px">42</div>
+              <div style="font-size:13px;color:var(--muted)">Current cadets</div>
+            </div>
+            <div>
+              <div style="font-weight:800;color:var(--raf-blue);font-size:20px">6</div>
+              <div style="font-size:13px;color:var(--muted)">CFAV staff</div>
             </div>
           </div>
 
-          <aside class="card" aria-labelledby="quick-links">
-            <h3 id="quick-links" style="margin-top:0">Quick links</h3>
-            <ul style="padding-left:18px;margin-top:8px;color:var(--muted)">
-              <li><a href="#bins" data-target="bins">Bin collection days</a></li>
-              <li><a href="#planning" data-target="planning">Apply for planning</a></li>
-              <li><a href="#news" data-target="news">Latest news</a></li>
-              <li><a href="#contact" data-target="contact">Contact us</a></li>
-            </ul>
-          </aside>
+          <div style="margin-top:12px"><button class="btn" onclick="alert('Thanks — direct to squads admin')">Request a visit</button></div>
         </div>
 
-        <div style="margin-top:18px">
-          <h3 style="margin-bottom:8px">Latest from Beckshire</h3>
-          <div class="grid-wide">
-            <div class="news-list">
-              <article class="news-item">
-                <strong>New recycling scheme launches</strong>
-                <div class="muted">15 Oct 2025</div>
-                <p>Beckshire is rolling out a new household recycling scheme to improve waste separation.</p>
-              </article>
-              <article class="news-item">
-                <strong>Planning consultation</strong>
-                <div class="muted">1 Oct 2025</div>
-                <p>We are consulting on proposed housing developments across Beckshire. Have your say.</p>
-              </article>
-              <article class="news-item">
-                <strong>Roadworks on High Street</strong>
-                <div class="muted">20 Sep 2025</div>
-                <p>Temporary diversions are in place while essential repairs are completed.</p>
-              </article>
-            </div>
-
-            <aside>
-              <div class="card">
-                <h4 style="margin-top:0">Service updates</h4>
-                <ul style="padding-left:18px;color:var(--muted)">
-                  <li>Council meetings: live stream links</li>
-                  <li>Garden waste registration open</li>
-                  <li>Community grants available</li>
-                </ul>
-                <a class="cta" href="#news" data-target="news" style="display:inline-block;margin-top:10px">More news</a>
-              </div>
-            </aside>
-          </div>
-        </div>
-      </section>
-
-      <!-- SERVICES -->
-      <section id="services" class="page hidden" tabindex="-1">
-        <h2>Council services</h2>
-        <p class="muted">All services provided by Beckshire Council.</p>
-        <div class="services-grid" style="margin-top:12px">
-          <div class="tile"><h3>Bins & recycling</h3><p class="muted">Schedules, guidelines and bulky waste.</p></div>
-          <div class="tile"><h3>Planning & building</h3><p class="muted">Applications, decisions and guidance.</p></div>
-          <div class="tile"><h3>Council tax</h3><p class="muted">Payments, discounts and queries.</p></div>
-          <div class="tile"><h3>Housing</h3><p class="muted">Support, applications and schemes.</p></div>
-          <div class="tile"><h3>Business rates</h3><p class="muted">For local businesses.</p></div>
-          <div class="tile"><h3>Leisure & parks</h3><p class="muted">Parks, sports and events.</p></div>
-        </div>
-      </section>
-
-      <!-- BINS -->
-      <section id="bins" class="page hidden" tabindex="-1">
-        <h2>Bins & recycling</h2>
-        <p class="muted">Find collection days, recycling tips and how to report missed collections.</p>
-        <div class="card" style="margin-top:12px">
-          <h3>Find your collection day</h3>
-          <p class="muted">This demo page is static; on a live site we'd provide a postcode lookup.</p>
-        </div>
-      </section>
-
-      <!-- PLANNING -->
-      <section id="planning" class="page hidden" tabindex="-1">
-        <h2>Planning & building</h2>
-        <p class="muted">Apply for planning permission, view applications and appeal decisions.</p>
-      </section>
-
-      <!-- COUNCIL TAX -->
-      <section id="council-tax" class="page hidden" tabindex="-1">
-        <h2>Council tax</h2>
-        <p class="muted">Pay online, ask about discounts and exemptions.</p>
-      </section>
-
-      <!-- HOUSING -->
-      <section id="housing" class="page hidden" tabindex="-1">
-        <h2>Housing</h2>
-        <p class="muted">Support, applications and homelessness advice.</p>
-      </section>
-
-      <!-- NEWS -->
-      <section id="news" class="page hidden" tabindex="-1">
-        <h2>Latest news</h2>
-        <div class="news-list" style="margin-top:12px">
-          <article class="news-item"><strong>New recycling scheme launches</strong><div class="muted">15 Oct 2025</div><p>Beckshire is rolling out new household recycling bins...</p></article>
-          <article class="news-item"><strong>Planning consultation</strong><div class="muted">18 Oct 2025</div><p>We are consulting on proposed housing developments...</p></article>
-          <article class="news-item"><strong>New streets</strong><div class="muted">20 Oct 2025</div><p>We are constructing new streets to improve transport...</p></article>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section id="contact" class="page hidden" tabindex="-1">
-        <h2>Contact us</h2>
-        <p class="muted">If you have a question, need help with one of our services, or want to share feedback, our support team is here to help. You can get in touch by messaging the Leader of the Council (@Littlefoxyalex) or by visiting our Discord server (https://discord.gg/rpJRUBU8mA). For general enquiries, residents are encouraged to reach out through the official communication channels provided on the website. Beckshire Council aims to respond to all messages promptly and ensure every enquiry is directed to the right department.</p>
-        </div>
-      </section>
-
-      <!-- ABOUT -->
-      <section id="about" class="page hidden" tabindex="-1">
-        <h2>About Beckshire Council</h2>
-        <p class="muted">Beckshire Council is the local authority responsible for the Borough of Beckshire, dedicated to delivering high-quality services, supporting local communities, and ensuring a safe, sustainable and thriving place for everyone. Our mission is to make Beckshire a great place to live, work, visit and do business. We provide a wide range of essential services, including waste collection, housing, planning, environmental protection, transport, leisure and community development. Guided by transparency, accountability and public engagement, we work closely with residents, community groups and local businesses to shape a better future for the borough. Through strong partnerships and a shared commitment to fairness and sustainability, Beckshire Council strives to protect the environment, support economic growth, improve public spaces and enhance the quality of life for all who call Beckshire home.</p>
-      </section>
-
-      <!-- PAY OR REPORT -->
-      <section id="pay-or-report" class="page hidden" tabindex="-1">
-        <h2>Pay or report</h2>
-        <p class="muted">Make payments or report an issue to the council.</p>
-        <div class="card" style="margin-top:12px">
-          <h3>Pay or report</h3>
-          <ul style="padding-left:18px;color:var(--muted)">
-            <li>Pay council tax or business rates</li>
-            <li>Report a missed bin collection</li>
-            <li>Report highways or environmental issues</li>
+        <div style="margin-top:12px" class="info-card">
+          <small>Upcoming courses</small>
+          <ul style="margin-top:8px;padding-left:18px;color:var(--muted)">
+            <li>Youths Awards & Leadership Course — apply by end of month</li>
+            <li>Air Experience Flying (AEF) slots available</li>
+            <li>First Aid course (basic) — limited spaces</li>
           </ul>
         </div>
-      </section>
+      </aside>
+    </section>
 
-    </div>
+    <!-- NEWS + EVENTS -->
+    <section class="two-col" id="news" aria-labelledby="news-heading" style="margin-top:26px">
+      <div>
+        <h2 id="news-heading">Latest news</h2>
+
+        <article class="news-item" style="margin-top:12px">
+          <h3>Cadets succeed in Regional Drill Competition</h3>
+          <div class="meta">12 October 2025 — by Sgt. R. Hughes</div>
+          <p style="margin-top:10px;color:var(--muted)">Our drill team placed second at the City Wing competition. Congratulations to the team and to the staff who supported them — full gallery below.</p>
+          <div style="margin-top:12px;display:flex;gap:10px">
+            <img src="https://via.placeholder.com/120x80" alt="drill" style="border-radius:8px;object-fit:cover">
+            <img src="https://via.placeholder.com/120x80" alt="trophy" style="border-radius:8px;object-fit:cover">
+          </div>
+        </article>
+
+        <article class="news-item" style="margin-top:12px">
+          <h3>Fieldcraft weekend — report</h3>
+          <div class="meta">30 September 2025 — by Lt. K. Malik</div>
+          <p style="margin-top:8px;color:var(--muted)">Cadets completed navigation, shelter-building and basic signals training in a spirited weekend away. Read the full debrief for lessons learned and photographs.</p>
+        </article>
+
+        <article class="news-item" style="margin-top:12px">
+          <h3>Air Experience Flying — spots released</h3>
+          <div class="meta">18 September 2025 — Admin</div>
+          <p style="margin-top:8px;color:var(--muted)">An allocation of AEF flights has been granted. Eligible cadets will be contacted — ensure your paperwork is up to date.</p>
+        </article>
+
+      </div>
+
+      <aside>
+        <div class="card">
+          <h3 style="color:var(--raf-blue)">Upcoming events</h3>
+          <div class="events-list" style="margin-top:8px">
+            <div class="event"><time datetime="2025-11-07">7 Nov 2025</time><div>Aviation guest lecture — 1900 hrs</div></div>
+            <div class="event"><time datetime="2025-11-14">14 Nov 2025</time><div>Wing Navigation Competition</div></div>
+            <div class="event"><time datetime="2025-12-05">5 Dec 2025</time><div>Squadron Christmas Social — families welcome</div></div>
+          </div>
+
+          <hr style="margin:12px 0;border:none;border-top:1px solid #eef4ff">
+
+          <h4 style="margin-bottom:8px">Announcements</h4>
+          <ul style="padding-left:18px;color:var(--muted)">
+            <li>Uniform service appointment bookings open</li>
+            <li>Parents' evening — 20 Nov, register via form</li>
+          </ul>
+        </div>
+
+        <div style="margin-top:12px" class="card">
+          <h4>Quick links</h4>
+          <ul style="padding-left:18px;color:var(--muted);margin-top:8px">
+            <li><a href="#resources">Resources & forms</a></li>
+            <li><a href="#join">How to join</a></li>
+            <li><a href="#contact">Squadron contact</a></li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+
+    <!-- About / Leaders -->
+    <section id="about" style="margin-top:26px">
+      <div class="card">
+        <h2>About 329 Squadron</h2>
+        <p style="margin-top:8px;color:var(--muted)">Formed to provide aviation-focused activities and training for local youth, 329 Squadron has a long history of community engagement and preparing young people for future success. We welcome cadets aged 12–20 and offer a structured programme of ranks, skills training and adventurous activities.</p>
+
+        <div style="margin-top:16px">
+          <h3 style="color:var(--raf-blue);font-size:18px">Squadron leadership</h3>
+          <div style="margin-top:12px" class="leaders">
+            <div class="leader"><img src="https://via.placeholder.com/64" alt="OC"><div><div style="font-weight:800">Sqn Ldr. A. Thompson</div><div style="font-size:13px;color:var(--muted)">Officer Commanding</div></div></div>
+            <div class="leader"><img src="https://via.placeholder.com/64" alt="Adjutant"><div><div style="font-weight:800">FS. M. Baines</div><div style="font-size:13px;color:var(--muted)">Adjutant</div></div></div>
+            <div class="leader"><img src="https://via.placeholder.com/64" alt="Sgt"><div><div style="font-weight:800">CWO J. Patel</div><div style="font-size:13px;color:var(--muted)">Warrant Officer</div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Join -->
+    <section id="join" style="margin-top:26px;display:grid;grid-template-columns:1fr 420px;gap:22px">
+      <div class="card">
+        <h2>Join 329 Squadron — Cadet application</h2>
+        <p style="margin-top:8px;color:var(--muted)">Interested in becoming a cadet? Complete the short form and we'll contact you with next steps. If you're a parent, please supply your contact information and the cadet's details.</p>
+
+        <form id="join-form" class="join-form" onsubmit="return handleJoin(event)" aria-label="Join form">
+          <div class="form-row">
+            <label for="first">First name</label>
+            <input id="first" name="first" type="text" required>
+          </div>
+          <div class="form-row">
+            <label for="last">Last name</label>
+            <input id="last" name="last" type="text" required>
+          </div>
+          <div class="form-row">
+            <label for="dob">Date of birth</label>
+            <input id="dob" name="dob" type="text" placeholder="YYYY-MM-DD" required>
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required>
+          </div>
+          <div class="form-row">
+            <label for="parent">Parent / Guardian name</label>
+            <input id="parent" name="parent" type="text">
+          </div>
+          <div class="form-row">
+            <label for="phone">Contact phone</label>
+            <input id="phone" name="phone" type="text">
+          </div>
+          <div class="form-row" style="grid-column:1 / -1">
+            <label for="note">Anything you'd like us to know</label>
+            <textarea id="note" name="note"></textarea>
+          </div>
+
+          <div style="grid-column:1 / -1;display:flex;gap:10px;align-items:center">
+            <button class="btn" type="submit">Submit application</button>
+            <button class="btn secondary" type="button" onclick="document.getElementById('join-form').reset()">Reset</button>
+            <div style="color:var(--muted);font-size:13px;margin-left:auto">We never share your data — mock site only.</div>
+          </div>
+        </form>
+
+        <div id="join-result" style="margin-top:12px;color:var(--raf-blue);font-weight:700;display:none">Thanks — your application has been received. We'll be in touch.</div>
+      </div>
+
+      <aside>
+        <div class="card">
+          <h3>What to expect</h3>
+          <ul style="padding-left:18px;color:var(--muted);margin-top:8px">
+            <li>Welcome and induction on your first parade night</li>
+            <li>Uniform information and provisional issue</li>
+            <li>Medical and consent forms to complete</li>
+            <li>Activity programme: flying, shooting, fieldcraft and more</li>
+          </ul>
+
+          <hr style="margin:12px 0;border:none;border-top:1px solid #eef4ff">
+
+          <h4>Eligibility</h4>
+          <p style="color:var(--muted);margin-top:8px">Aged 12 to 20 at the time of joining. Open to young people of all backgrounds — we promote equality and inclusion.</p>
+        </div>
+
+        <div style="margin-top:12px" class="card">
+          <h4>Uniform & kit</h4>
+          <p style="color:var(--muted);margin-top:8px">Initial uniform is provided on a loan basis. Cadets are responsible for personal kit for adventurous training — guidance available from staff.</p>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Gallery & Resources -->
+    <section id="resources" style="margin-top:26px">
+      <div class="card">
+        <h2>Gallery & Documents</h2>
+        <p style="margin-top:8px;color:var(--muted)">Photos, forms and quick reference documents for parents and cadets.</p>
+
+        <div style="margin-top:14px" class="gallery">
+          <img src="https://via.placeholder.com/400x300" alt="cadets 1">
+          <img src="https://via.placeholder.com/400x300" alt="cadets 2">
+          <img src="https://via.placeholder.com/400x300" alt="cadets 3">
+          <img src="https://via.placeholder.com/400x300" alt="fieldcraft">
+          <img src="https://via.placeholder.com/400x300" alt="aef">
+          <img src="https://via.placeholder.com/400x300" alt="drill team">
+        </div>
+
+        <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn secondary" href="#">Download: Joining Pack (PDF)</a>
+          <a class="btn secondary" href="#">Parental Consent Form</a>
+          <a class="btn secondary" href="#">Uniform Ordering Guide</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" style="margin-top:26px;display:grid;grid-template-columns:1fr 360px;gap:22px">
+      <div class="card">
+        <h2>Contact the Squadron</h2>
+        <p style="margin-top:8px;color:var(--muted)">Use the form or the administrative contacts below. For urgent safeguarding concerns, contact local authorities and the ATC regional safeguarding officer immediately.</p>
+
+        <form id="contact-form" onsubmit="return handleContact(event)">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div class="form-row"><label for="cname">Name</label><input id="cname" required></div>
+            <div class="form-row"><label for="cemail">Email</label><input id="cemail" type="email" required></div>
+            <div class="form-row" style="grid-column:1 / -1"><label for="cmessage">Message</label><textarea id="cmessage" required></textarea></div>
+          </div>
+          <div style="margin-top:10px"><button class="btn">Send message</button></div>
+        </form>
+      </div>
+
+      <aside>
+        <div class="card">
+          <h4>Administrative contacts</h4>
+          <div style="margin-top:8px;color:var(--muted)">
+            <div><strong>Adjutant:</strong> adj329@example.org</div>
+            <div><strong>Officer Commanding:</strong> oc329@example.org</div>
+            <div style="margin-top:8px"><strong>Address:</strong><br/>Drill Hall, Finsbury Rd, City of London</div>
+          </div>
+
+          <hr style="margin:12px 0;border:none;border-top:1px solid #eef4ff">
+
+          <h4>Safeguarding</h4>
+          <p style="color:var(--muted);margin-top:8px">If you have concerns about the welfare of a cadet, please contact the Wing safeguarding officer or local authorities immediately. This mock site does not hold live contact details.</p>
+        </div>
+      </aside>
+    </section>
+
   </main>
 
-  <footer role="contentinfo">
-    <div class="site-footer">
-      <div class="footer-col">
-        <img src="beckshire-logo.png" alt="Beckshire Council" style="width:84px;height:auto">
-        <div class="muted" style="margin-top:8px">Beckshire Council</div>
+  <footer style="background:#fff;margin-top:28px;border-top:1px solid #eef4ff">
+    <div class="container footer-grid">
+      <div>
+        <h3 style="margin-bottom:8px;color:var(--raf-blue)">329 (Finsbury) Squadron</h3>
+        <div style="color:var(--muted);font-size:14px">Air Training Corps — City of London Wing</div>
+        <div style="margin-top:12px;color:var(--muted)">© 329 Squadron — mock site. For real squadron web presence please contact squadron staff.</div>
       </div>
-
-      <div class="footer-col">
-        <strong>Quick links</strong>
-        <ul style="padding-left:18px;margin-top:8px;color:var(--muted)">
-          <li><a href="#privacy" data-target="about">Privacy</a></li>
-          <li><a href="#cookies" data-target="about">Cookies</a></li>
-          <li><a href="#accessibility" data-target="about">Accessibility</a></li>
-        </ul>
+      <div style="align-self:center;text-align:right">
+        <div class="social" style="margin-bottom:8px">
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Twitter">X</a>
+        </div>
+        <div style="color:var(--muted);font-size:13px">Website design — Squadron web team</div>
       </div>
-
-      <div class="muted" style="margin-left:auto">© Beckshire Council</div>
     </div>
   </footer>
 
   <script>
-    // Routing + navigation handling
-    const sections = Array.from(document.querySelectorAll('.page'));
-    const navLinks = Array.from(document.querySelectorAll('[data-target]'));
-
-    function show(id){
-      sections.forEach(s => s.classList.add('hidden'));
-      const el = document.getElementById(id);
-      if(el){
-        el.classList.remove('hidden');
-        el.scrollIntoView({behavior:'smooth'});
-        // focus heading for screen readers
-        const h = el.querySelector('h2'); if(h){ h.tabIndex=-1; h.focus(); }
-      }
+    // Simple client-side handlers (mock)
+    function handleJoin(e){
+      e.preventDefault();
+      // collect basic values (this is a mock — no network)
+      const first=document.getElementById('first').value.trim();
+      const last=document.getElementById('last').value.trim();
+      if(!first||!last){alert('Please provide name');return false}
+      document.getElementById('join-result').style.display='block';
+      setTimeout(()=>document.getElementById('join-result').style.display='none',6000);
+      document.getElementById('join-form').reset();
+      return false;
     }
 
-    // link click handler
-    navLinks.forEach(a => {
-      a.addEventListener('click', (e) => {
-        const target = a.dataset.target || a.getAttribute('href').replace('#','');
-        if(target){
-          e.preventDefault();
-          location.hash = target;
-          show(target);
-          // close mobile menu if open
-          toggleMobile(false);
-        }
-      });
-    });
+    function handleContact(e){
+      e.preventDefault();
+      alert('Thanks — message captured (mock).');
+      document.getElementById('contact-form').reset();
+      return false;
+    }
 
-    // hashchange support
-    window.addEventListener('hashchange', () => {
-      const id = location.hash.replace('#','') || 'home';
-      show(id);
-    });
-
-    // initial load
+    // Accessibility: allow keyboard nav to skip to main content
     (function(){
-      const init = location.hash.replace('#','') || 'home';
-      show(init);
+      const skip=document.createElement('a');
+      skip.href='#home';
+      skip.text='Skip to main content';
+      skip.style.position='absolute';skip.style.left='-9999px';skip.style.top='auto';skip.style.width='1px';skip.style.height='1px';skip.style.overflow='hidden';
+      skip.addEventListener('focus',()=>{skip.style.left='10px';skip.style.top='10px';skip.style.width='auto';skip.style.height='auto';skip.style.background='#fff';skip.style.padding='8px';skip.style.zIndex='9999';});
+      skip.addEventListener('blur',()=>{skip.style.left='-9999px';});
+      document.body.prepend(skip);
     })();
 
-    // mobile menu
-    const hamburger = document.getElementById('hamburger');
-    const mainNav = document.getElementById('main-nav');
-    function toggleMobile(open){
-      const expanded = open === undefined ? hamburger.getAttribute('aria-expanded') === 'false' : !open ? false : true;
-      if(expanded){
-        mainNav.style.display = 'flex';
-        mainNav.style.flexDirection = 'column';
-        mainNav.style.gap = '6px';
-        hamburger.setAttribute('aria-expanded','true');
-      } else {
-        mainNav.style.display = '';
-        hamburger.setAttribute('aria-expanded','false');
-      }
-    }
-    hamburger && hamburger.addEventListener('click', ()=>{ toggleMobile(true); });
-
-    // Accessibility: close mobile menu on resize
-    window.addEventListener('resize', ()=>{
-      if(window.innerWidth > 760){ mainNav.style.display = ''; hamburger && hamburger.setAttribute('aria-expanded','false'); }
+    // Lightweight progressive enhancement: replace placeholder images with local logo if available
+    window.addEventListener('load',()=>{
+      const logo = document.querySelector('.brand img');
+      // if logo failed to load and the server provides 329-logo.png, it will have been used; otherwise keep fallback
     });
   </script>
 </body>
