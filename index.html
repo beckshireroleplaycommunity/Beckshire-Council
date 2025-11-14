@@ -8,29 +8,61 @@
         html, body {
             height: 100%;
             margin: 0;
-            padding: 0;
-        }
-
-        body {
             display: flex;
             justify-content: center;
             align-items: center;
             background: #f0f0f0;
-            overflow: hidden;  /* removes scrolling */
             font-family: Arial, sans-serif;
+            text-align: center;
         }
 
-        iframe {
-            width: 387px;   /* your exact size */
-            height: 199px;  /* your exact size */
-            border: none;
+        .countdown-box {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-size: 24px;
+        }
+
+        .time {
+            font-size: 32px;
+            font-weight: bold;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
 
-    <iframe src="https://w2.countingdownto.com/6710380"></iframe>
+    <div class="countdown-box">
+        <div>Time Until Event:</div>
+        <div id="countdown" class="time">Loading...</div>
+    </div>
+
+<script>
+    // 🔥 Your event date: 16 Nov 2025 at 14:00 GMT
+    const eventDate = new Date("2025-11-16T14:00:00Z").getTime();
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const diff = eventDate - now;
+
+        if (diff < 0) {
+            document.getElementById("countdown").innerHTML = "The event has started!";
+            return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").innerHTML =
+            days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+</script>
 
 </body>
 </html>
-
