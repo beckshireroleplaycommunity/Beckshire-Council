@@ -1,151 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AAC Applications Countdown</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Army Air Corps – Applications Countdown</title>
 
-<!-- Military Font -->
-<link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and base styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+        body {
+            background: #0c0c0c;
+            font-family: "Arial", sans-serif;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
 
-    body {
-        background: url('https://i.imgur.com/2vdQqYk.jpeg') center/cover no-repeat;
-        background-attachment: fixed;
-        font-family: 'Staatliches', sans-serif;
-        color: #e0e0e0;
-        text-align: center;
-        min-height: 100vh;
-        overflow-x: hidden;
-    }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #9cc7ff;
+        }
 
-    /* Dark Overlay */
-    body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.55);
-        z-index: -1;
-    }
+        .subtext {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #cccccc;
+        }
 
-    .logo {
-        width: 230px;
-        margin-top: 40px;
-        filter: drop-shadow(0 0 10px black);
-    }
+        .countdown-box {
+            padding: 30px 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 0 25px rgba(0, 130, 255, 0.25);
+            transition: all 0.3s ease;
+        }
 
-    .banner {
-        margin-top: 20px;
-        padding: 12px 20px;
-        background: #003300cc;
-        display: inline-block;
-        color: #fff;
-        font-size: 26px;
-        letter-spacing: 2px;
-        border: 3px solid #005500;
-        border-radius: 6px;
-        animation: flash 1.5s infinite;
-    }
+        .countdown-box:hover {
+            box-shadow: 0 0 35px rgba(0, 180, 255, 0.35);
+            transform: translateY(-3px);
+        }
 
-    @keyframes flash {
-        0% { opacity: 1; }
-        50% { opacity: 0.55; }
-        100% { opacity: 1; }
-    }
+        .time {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #9cc7ff;
+            text-shadow: 0 0 15px rgba(100,150,255,0.6);
+        }
 
-    .countdown-box {
-        margin: 40px auto;
-        padding: 25px 40px;
-        background: rgba(0, 20, 0, 0.7);
-        border: 3px solid #004400;
-        border-radius: 10px;
-        width: fit-content;
-        box-shadow: 0 0 25px rgba(0, 255, 100, 0.3);
-    }
+        footer {
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #cccccc;
+            opacity: 0.6;
+        }
 
-    .time {
-        font-size: 50px;
-        color: #aaffaa;
-        letter-spacing: 3px;
-        text-shadow: 0 0 15px #00ff55;
-    }
-
-    /* Helicopter animation */
-    .heli {
-        position: fixed;
-        top: 120px;
-        width: 200px;
-        opacity: 0.22;
-        animation: fly 18s linear infinite;
-        pointer-events: none;
-    }
-
-    @keyframes fly {
-        0% { left: -300px; top: 150px; }
-        50% { top: 120px; }
-        100% { left: 120%; top: 180px; }
-    }
-
-    footer {
-        margin-top: 40px;
-        padding-bottom: 20px;
-        font-size: 14px;
-        opacity: 0.6;
-    }
-</style>
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            .subtext {
+                font-size: 1rem;
+            }
+            .countdown-box {
+                padding: 20px 30px;
+            }
+            .time {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<!-- Helicopter -->
-<img class="heli" src="https://i.imgur.com/jyPn0fB.png">
+    <h1>Army Air Corps</h1>
+    <div class="subtext">Applications Release Countdown</div>
 
-<!-- YOUR UPDATED LOGO -->
-<img src="aac_logo.png" alt="AAC Logo" class="logo">
+    <div class="countdown-box">
+        <div id="countdown" class="time">Loading...</div>
+    </div>
 
-<div class="banner">APPLICATIONS OPENING SOON</div>
+    <footer>© British Army – Army Air Corps</footer>
 
-<div class="countdown-box">
-    <div id="countdown" class="time">Loading...</div>
-</div>
+    <script>
+        // Set the target date and time for the countdown
+        const eventDate = new Date("2025-11-16T14:00:00Z").getTime();
 
-<footer>© Army Air Corps – British Army</footer>
-
-<!-- Countdown Finish Sound -->
-<audio id="alarm-sound" src="https://www.myinstants.com/media/sounds/alarm.mp3"></audio>
-
-<script>
-    // EVENT DATE
-    const eventDate = new Date("2025-11-16T14:00:00Z").getTime();
-    const alarm = document.getElementById("alarm-sound");
-
-    function updateCountdown() {
-        const now = Date.now();
-        const diff = eventDate - now;
-
-        if (diff <= 0) {
-            document.getElementById("countdown").innerHTML = "APPLICATIONS NOW OPEN!";
-            alarm.play();
-            return;
+        function padZero(num) {
+            return num.toString().padStart(2, '0');
         }
 
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = eventDate - now;
 
-        document.getElementById("countdown").innerHTML =
-            `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
+            if (diff <= 0) {
+                document.getElementById("countdown").innerHTML = "APPLICATIONS OPEN!";
+                clearInterval(interval);
+                return;
+            }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-</script>
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = 
+                `${days}d ${padZero(hours)}h ${padZero(minutes)}m ${padZero(seconds)}s`;
+        }
+
+        // Initial call
+        updateCountdown();
+
+        // Update every second
+        const interval = setInterval(updateCountdown, 1000);
+    </script>
 
 </body>
 </html>
